@@ -1,7 +1,6 @@
 import express from "express"
-import { registerUserSchema, validate } from "../middlewares/validator.js"
-import { registerUser } from "../controllers/user.controller.js"
 import * as userController from "../controllers/users.controller.js"
+
 const userRouter = express.Router()
 
 
