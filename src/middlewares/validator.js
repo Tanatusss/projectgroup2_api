@@ -7,9 +7,9 @@ export const loginSchema = object({
 })
 
 export const registerUserSchema = object({
-	email: string().required(),
-	password: string().min(4).required(),
-	confirmPassword: string().oneOf([ref("password"), null], `confirmPassword must match password`),
+email: string().required('กรุณากรอกemail'),
+	password: string().min(4).required("กรุณากรอกpassword"),
+	confirmPassword: string().oneOf([ref("password")], "รหัสผ่านไม่ตรงกัน").required("กรุณากรอกยืนยันรหัสผ่าน"),
 })
 
 export const aiSchema = object({
@@ -17,11 +17,11 @@ export const aiSchema = object({
 })
 
 
-
 export const validate = (schema) => async (req, res, next) => {
 	try {
 		await schema.validate(req.body, { abortEarly: false })
-		next()
+		next();
+
 	} catch (err) {
 		const errMessage = err.errors.map((item) => item)
 		const errText = errMessage.join(", ")

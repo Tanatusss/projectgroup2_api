@@ -31,16 +31,16 @@ model User {
 }
 
 model Company {
-        id       Int       @id @default(autoincrement())
-        email    String    @unique
-        name     String?
-        password String
-        role     Roles     @default(COMPANY)
-        phone    Int?      @unique
-        address  String?
-        logoimage     String?
-        link     String?
-        jobPost  JobPost[]
+        id        Int       @id @default(autoincrement())
+        email     String    @unique
+        name      String?
+        password  String
+        role      Roles     @default(COMPANY)
+        phone     String?   @unique
+        address   String?
+        logoimage String?
+        link      String?
+        jobPost   JobPost[]
 }
 
 enum Gender {
@@ -56,7 +56,7 @@ model ProfileUser {
         age            Int?
         address        String?
         skills         String?
-        phone          Int?       @unique
+        phone          String?    @unique
         education      String?
         linkResume     String?
         gender         Gender?
