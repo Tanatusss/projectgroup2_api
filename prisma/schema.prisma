@@ -28,7 +28,17 @@ model User {
         bookmark       Bookmark[]
         workExperience WorkExperience[]
         profile        ProfileUser[]
+        resetTokens ResetToken[]
 }
+
+model ResetToken {
+  id         Int      @id @default(autoincrement())
+  token      String   @unique
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id])
+  expiresAt  DateTime
+}
+
 
 model Company {
         id        Int       @id @default(autoincrement())
