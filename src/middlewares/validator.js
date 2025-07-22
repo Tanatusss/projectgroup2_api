@@ -5,10 +5,10 @@ export const loginSchema = object({
 	email: string(),
 	password: string(),
 })
-export const registerSchema = object({
-	email: string(),
-	password: string(),
-	confirmPassword: string().oneOf([ref("password"), null]),
+export const registerUserSchema = object({
+	email: string().required(),
+	password: string().min(4).required(),
+	confirmPassword: string().oneOf([ref("password"), null],`confirmPassword must match password`),
 })
 
 

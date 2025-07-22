@@ -38,7 +38,7 @@ model Company {
         role     Roles     @default(COMPANY)
         phone    Int?      @unique
         address  String?
-        logo     String?
+        logoimage     String?
         link     String?
         jobPost  JobPost[]
 }
