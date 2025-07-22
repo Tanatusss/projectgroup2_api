@@ -1,12 +1,17 @@
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
-import publicRouter from "./routes/public.route.js"
-import userRouter from "./routes/user.route.js"
-import companyRouter from "./routes/company.route.js"
-import adminRouter from "./routes/admin.route.js"
+import authRouter from "./routes/auth.route.js";
+import userRouter from "./routes/user.route.js";
+import companyRouter from "./routes/company.route.js";
+import jobRouter from "./routes/job.route.js";
+import bookmarkRouter from "./routes/bookmark.route.js";
+import applicationRouter from "./routes/appication.route.js";
+import profileRouter from "./routes/profile.route.js";
+import experienceRouter from "./routes/experience.route.js";
 import { error } from "./utils/error.js";
 import { notFound } from "./utils/not-found.js";
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -19,10 +24,16 @@ app.use(cors({
 }));
 app.use(helmet());
 
-app.use("/api", publicRouter)
+app.use("/api", authRouter)
 app.use("/api", userRouter)
 app.use("/api", companyRouter)
-app.use("/api", adminRouter)
+app.use("/api", jobRouter)
+app.use("/api", bookmarkRouter)
+app.use("/api", applicationRouter)
+app.use("/api", profileRouter)
+app.use("/api", experienceRouter)
+
+
 
 app.use(error)
 app.use(notFound)
@@ -30,3 +41,4 @@ app.use(notFound)
 app.listen(PORT, () => {
 	console.log(`Server running at http://localhost:${PORT}`)
 });
+ 
