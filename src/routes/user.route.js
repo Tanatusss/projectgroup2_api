@@ -1,7 +1,16 @@
 import express from "express"
 
-const router = express.Router()
+const userRouter = express.Router()
 
-router.get("/getme", () => console.log("user get me"))
 
-export default router
+
+userRouter.get("/user", () => {console.log("Get All User")})
+userRouter.get("/user/:user_id", () => {console.log("Get User By Id")})
+userRouter.patch("/user/:user_id", () => {console.log("Edit User By Id")})
+userRouter.delete("/user/:user_id", () => {console.log("Delete User By Id")})
+
+
+
+
+
+export default userRouter
