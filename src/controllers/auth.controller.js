@@ -1,6 +1,7 @@
 import { createError } from "../utils/createError.js";
 import bcrypt from 'bcryptjs';
 import prisma from '../config/prisma.js'
+import { createUser } from "../services/user.service.js";
 
 
 
@@ -28,9 +29,11 @@ export const registerUser = async(req,res,next) => {
     email,
     password: hashPassword
   } 
-  res.json({message: `Register ${newUser.email} success`})
+  const result = await createUser(newUser)
+  res.json({message: `Register success`,result})
 
   }catch(error){
     next(error)
   }
 }
+
