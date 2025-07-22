@@ -35,8 +35,8 @@ app.use("/api", experienceRouter)
 
 
 
-app.use(error)
-app.use(notFound)
+// app.use(error)
+// app.use(notFound)
 
 app.listen(PORT, () => {
 	console.log(`Server running at http://localhost:${PORT}`)
