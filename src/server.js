@@ -9,6 +9,7 @@ import bookmarkRouter from "./routes/bookmark.route.js";
 import applicationRouter from "./routes/appication.route.js";
 import profileRouter from "./routes/profile.route.js";
 import experienceRouter from "./routes/experience.route.js";
+import aiRouter from "./routes/ai.route.js";
 import { error } from "./utils/error.js";
 import { notFound } from "./utils/not-found.js";
 
@@ -32,7 +33,7 @@ app.use("/api", bookmarkRouter)
 app.use("/api", applicationRouter)
 app.use("/api", profileRouter)
 app.use("/api", experienceRouter)
-
+app.use("/api", aiRouter)
 
 
 app.use(error)
@@ -41,4 +42,4 @@ app.use(notFound)
 app.listen(PORT, () => {
 	console.log(`Server running at http://localhost:${PORT}`)
 });
- 
+
