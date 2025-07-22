@@ -1,0 +1,135 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+        provider = "prisma-client-js"
+        output   = "../src/generated/prisma"
+}
+
+datasource db {
+        provider = "mysql"
+        url      = env("DATABASE_URL")
+}
+
+enum Roles {
+        USER
+        COMPANY
+        ADMIN
+}
+
+model User {
+        id             Int              @id @default(autoincrement())
+        email          String           @unique
+        password       String
+        role           Roles            @default(USER)
+        bookmark       Bookmark[]
+        workExperience WorkExperience[]
+        profile        ProfileUser[]
+}
+
+model Company {
+        id       Int       @id @default(autoincrement())
+        email    String    @unique
+        name     String?
+        password String
+        role     Roles     @default(COMPANY)
+        phone    Int?      @unique
+        address  String?
+        logo     String?
+        link     String?
+        jobPost  JobPost[]
+}
+
+enum Gender {
+        MALE
+        FEMALE
+        OTHER
+}
+
+model ProfileUser {
+        id             Int        @id @default(autoincrement())
+        user_id        Int
+        user           User       @relation(fields: [user_id], references: [id])
+        age            Int?
+        address        String?
+        skills         String?
+        phone          Int?       @unique
+        education      String?
+        linkResume     String?
+        gender         Gender?
+        expectedSalary Int?
+        firstName      String?
+        lastName       String?
+        preferredJob   String?
+        jobApply       JobApply[]
+}
+
+model WorkExperience {
+        id          Int       @id @default(autoincrement())
+        user_id     Int
+        user        User      @relation(fields: [user_id], references: [id])
+        jobPosition String?
+        company     String?
+        salary      Int?
+        startDate   DateTime?
+        endDate     DateTime?
+}
+
+model Bookmark {
+        id      Int     @id @default(autoincrement())
+        user_id Int
+        job_id  Int
+        user    User    @relation(fields: [user_id], references: [id])
+        job     JobPost @relation(fields: [job_id], references: [id])
+}
+
+model JobApply {
+        id         Int         @id @default(autoincrement())
+        profile_id Int
+        job_id     Int
+        profile    ProfileUser @relation(fields: [profile_id], references: [id])
+        job        JobPost     @relation(fields: [job_id], references: [id])
+        applyAt    DateTime    @default(now())
+}
+
+enum PostStatus {
+        ACTIVE
+        EXPIRED
+}
+
+model JobPost {
+        id             Int        @id @default(autoincrement())
+        company_id     Int
+        company        Company    @relation(fields: [company_id], references: [id])
+        title          String
+        jobDescription String
+        address        String
+        salary         Int
+        jobRequirement String
+        createAt       DateTime   @default(now())
+        status         PostStatus @default(ACTIVE)
+        bookmark       Bookmark[]
+        jobApply       JobApply[]
+        payment        Payment[]
+}
+
+enum PaymentStatus {
+        PENDING
+        PAID
+}
+
+model Payment {
+        id                Int           @id @default(autoincrement())
+        job_id            Int
+        job               JobPost       @relation(fields: [job_id], references: [id])
+        session_url       String
+        status            PaymentStatus @default(PENDING)
+        paymentDate       DateTime?
+        paymentMethod     String?
+        price             Int
+        stripe_payment_id Int?          @unique
+        recover_url       String?
+}
