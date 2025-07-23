@@ -29,6 +29,7 @@ model User {
         bookmarkType BookmarkType[]
         profile      ProfileUser[]
         resetTokens  ResetToken[]
+
 }
 
 model ResetToken {
@@ -75,12 +76,7 @@ enum JobPreferences {
         CASUAL
 }
 
-model Provinces {
-        id          Int          @id @default(autoincrement())
-        name        String
-        profileUser ProfileUser? @relation(fields: [profile_id], references: [id])
-        profile_id  Int?
-}
+
 
 model ProfileUser {
         id             Int             @id @default(autoincrement())
@@ -98,7 +94,7 @@ model ProfileUser {
         user    User @relation(fields: [user_id], references: [id])
 
         bookmarkType   BookmarkType[]
-        provinces      Provinces[]
+        province      Province[]
         workExperience WorkExperience[]
         education      Education[]
         Skills         Skills[]
@@ -240,7 +236,8 @@ model Province {
         //relations
         jobPost   JobPost[]
         companies Company[]
-        users     User[]
+        profile_id  Int
+        profileUser ProfileUser? @relation(fields: [profile_id], references: [id])
 
         @@map("provinces")
 }
