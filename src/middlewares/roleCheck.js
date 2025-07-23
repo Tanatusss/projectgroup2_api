@@ -6,7 +6,7 @@ export const roleCheck = (allowRole) => (req, res, next) => {
 		if (!role) {
 			createError(401, "unauthorized")
 		}
-		if (role !== allowRole) {
+		if (!allowRole.includes(role)) {
 			createError(401, `only ${allowRole} can do this`)
 		}
 		next()
