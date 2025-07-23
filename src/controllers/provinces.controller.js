@@ -1,5 +1,5 @@
 import prisma from "../config/prisma.js";
-
+//ยิงเอาก้อนจังหวัดทั้งหมด
 export const getAllProvinces = async (req, res) => {
   try {
     const provinces = await prisma.province.findMany({
@@ -18,7 +18,7 @@ export const getAllProvinces = async (req, res) => {
     });
   }
 };
-
+//เอาแค่จังหวัดที่พิมพ์ค้นหา
 export const searchProvinces = async (req, res) => {
   const term = req.params.term; // user path params , api/provinces/search/:term
 
