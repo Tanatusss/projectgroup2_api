@@ -13,3 +13,16 @@ export const findUser = async (email) => {
     }
   })
 }
+
+
+export const createCompany = async (companyData) => {
+  return await prisma.company.create({data: companyData})
+}
+
+export const findCompany = async (email) => {
+  return await prisma.company.findFirst({
+    where: {
+      email
+    }
+  })
+}
