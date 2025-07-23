@@ -1,6 +1,6 @@
 import express from "express"
-import { authCheck } from "../middlewares/authCheck"
-import { updatecompany } from "../controllers/company.controller"
+import { authCheck } from "../middlewares/authCheck.js"
+import { updatecompany } from "../controllers/company.controller.js"
 
 const companyRouter = express.Router()
 
