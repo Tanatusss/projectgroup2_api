@@ -40,16 +40,18 @@ model ResetToken {
 }
 
 model Company {
-        id        Int       @id @default(autoincrement())
-        email     String    @unique
-        name      String?
-        password  String
-        role      Roles     @default(COMPANY)
-        phone     String?   @unique
-        address   String?
-        logoimage String?
-        link      String?
-        jobPost   JobPost[]
+        id         Int       @id @default(autoincrement())
+        email      String    @unique
+        name       String?
+        password   String
+        role       Roles     @default(COMPANY)
+        phone      String?   @unique
+        address    String?
+        logoimage  String?
+        link       String?
+        jobPost    JobPost[]
+        Province   Province? @relation(fields: [provinceId], references: [id])
+        provinceId Int?
 }
 
 enum Gender {
@@ -153,8 +155,8 @@ model WorkExperience {
         id          Int       @id @default(autoincrement())
         profile_id  Int
         jobPosition String?
-        company     String?
-        salary      Int?
+        companyname     String?
+        salary       Int?
         startDate   DateTime?
         endDate     DateTime?
 
@@ -205,6 +207,8 @@ model JobPost {
         favoriteJob    FavoriteJob[]
         jobApply       JobApply[]
         payment        Payment[]
+        Province       Province?  @relation(fields: [provinceId], references: [id])
+        provinceId     Int?
 }
 
 enum PaymentStatus {
@@ -223,4 +227,20 @@ model Payment {
         price             Int
         stripe_payment_id Int?          @unique
         recover_url       String?
+}
+
+model Province {
+        id             Int      @id @default(autoincrement())
+        provinceCode   Int      @unique
+        provinceNameEn String
+        provinceNameTh String
+        createdAt      DateTime @default(now())
+        updatedAt      DateTime @updatedAt
+
+        //relations
+        jobPost   JobPost[]
+        companies Company[]
+        users     User[]
+
+        @@map("provinces")
 }
