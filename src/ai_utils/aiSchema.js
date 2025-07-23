@@ -2,7 +2,6 @@ import { z } from "zod";
 
 export const userSchema = z.object({
 	age: z.optional(z.number()).describe("age of person in year"),
-	address: z.optional(z.string()).describe("country and city where user live"),
 	gender: z.optional(z.string()).describe("gender of user"),
 	skills: z.optional(z.string()).describe("skill of user that might relate to job"),
 	education: z.optional(z.string()).describe("education background of user"),
