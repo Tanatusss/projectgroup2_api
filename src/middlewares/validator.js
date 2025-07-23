@@ -1,12 +1,23 @@
 import { object, ref, string, number } from "yup"
 
 
-export const loginSchema = object({
+export const loginUserSchema = object({
 	email: string(),
 	password: string(),
 })
 
 export const registerUserSchema = object({
+email: string().required('กรุณากรอกemail'),
+	password: string().min(4).required("กรุณากรอกpassword"),
+	confirmPassword: string().oneOf([ref("password")], "รหัสผ่านไม่ตรงกัน").required("กรุณากรอกยืนยันรหัสผ่าน"),
+})
+
+export const loginCompanySchema = object({
+	email: string(),
+	password: string(), 
+})
+
+export const registerCompanySchema = object({
 email: string().required('กรุณากรอกemail'),
 	password: string().min(4).required("กรุณากรอกpassword"),
 	confirmPassword: string().oneOf([ref("password")], "รหัสผ่านไม่ตรงกัน").required("กรุณากรอกยืนยันรหัสผ่าน"),

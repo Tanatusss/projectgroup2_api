@@ -82,8 +82,8 @@ model WorkExperience {
         user_id     Int
         user        User      @relation(fields: [user_id], references: [id])
         jobPosition String?
-        company     String?
-        salary      Int?
+        companyname     String?
+        salary       Int?
         startDate   DateTime?
         endDate     DateTime?
 }
