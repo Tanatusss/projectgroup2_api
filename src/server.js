@@ -12,7 +12,7 @@ import experienceRouter from "./routes/experience.route.js";
 import aiRouter from "./routes/ai.route.js";
 import { error } from "./utils/error.js";
 import { notFound } from "./utils/not-found.js";
-import provincesRouter from "./routes/provinces.route.js";
+import districtsRouter from "./routes/districts.route.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -36,7 +36,7 @@ app.use("/api", applicationRouter);
 app.use("/api", profileRouter);
 app.use("/api", experienceRouter);
 app.use("/api", aiRouter);
-app.use("/api/provinces", provincesRouter);
+app.use("/api/districts", districtsRouter);
 
 // app.use(error)
 // app.use(notFound)
