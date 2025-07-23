@@ -11,6 +11,6 @@ export const userSchema = z.object({
 	preferJobTitle: z.optional(z.string()).describe("job title user prefered"),
 	preferJobCategory: z.optional(z.string()).describe("job category user prefered"),
 	preferJobField: z.optional(z.string()).describe("job fields user prefered"),
-	preferJobLocation: z.optional(z.string()).describe("job location user prefered. if user prefer location nearby, use their address "),
+	preferJobLocation: z.optional(z.string()).describe("city or district user prefer to work"),
 });
 

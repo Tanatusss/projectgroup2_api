@@ -1,3 +1,6 @@
-export const serviceAiSearch = async (text) => {
-	return text
+import prisma from "../config/prisma.js"
+
+export const serviceAiSearch = async (keywords) => {
+
+	return keywords
 }
