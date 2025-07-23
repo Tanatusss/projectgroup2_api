@@ -7,8 +7,9 @@ import { ChatPromptTemplate } from "@langchain/core/prompts";
 export const promptTemplate = ChatPromptTemplate.fromMessages([
 	[
 		"system",
-		`You are an expert extraction algorithm.
+		`You are an expert extraction algorithm use for job recruitment.
 Only extract relevant information from the text.
+If user say they want job near me you may assume they want job in city where they live.
 If you do not know the value of an attribute asked to extract,
 return null for the attribute's value.`,
 	],
