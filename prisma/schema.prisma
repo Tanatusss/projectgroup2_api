@@ -28,17 +28,16 @@ model User {
         bookmark       Bookmark[]
         workExperience WorkExperience[]
         profile        ProfileUser[]
-        resetTokens ResetToken[]
+        resetTokens    ResetToken[]
 }
 
 model ResetToken {
-  id         Int      @id @default(autoincrement())
-  token      String   @unique
-  userId     Int
-  user       User     @relation(fields: [userId], references: [id])
-  expiresAt  DateTime
+        id        Int      @id @default(autoincrement())
+        token     String   @unique
+        userId    Int
+        user      User     @relation(fields: [userId], references: [id])
+        expiresAt DateTime
 }
-
 
 model Company {
         id        Int       @id @default(autoincrement())
@@ -124,6 +123,11 @@ model JobPost {
         bookmark       Bookmark[]
         jobApply       JobApply[]
         payment        Payment[]
+
+        @@fulltext([title])
+        @@fulltext([address])
+        @@fulltext([jobDescription])
+        @@fulltext([jobRequirement])
 }
 
 enum PaymentStatus {

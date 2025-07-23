@@ -5,8 +5,6 @@ export const serviceAiSearch = async (keywords) => {
 		age,
 		education,
 		expectedSalary,
-		gender,
-		preferJobCategory,
 		preferJobField,
 		preferJobLocation,
 		preferJobTitle,
@@ -14,7 +12,20 @@ export const serviceAiSearch = async (keywords) => {
 		workingExperience
 	} = keywords
 	const result = await prisma.jobPost.findMany({
-		where: { salary: { gte: expectedSalary } }
+		where: {
+			title: { search: `*${preferJobTitle}*` },
+			jobDescription: {
+				search: `*manage*`
+			},
+			salary: { gte: expectedSalary },
+			address: {
+				search: `*${preferJobLocation}*`
+			},
+			jobRequirement: {
+				search: `*${skills}*`
+			},
+			status: "ACTIVE"
+		}
 	})
 	return result
 }

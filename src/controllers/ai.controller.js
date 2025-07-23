@@ -8,7 +8,7 @@ const testResponse = {
 	address: "bangkok",
 	age: 30,
 	education: "civil engineer graduated",
-	expectedSalary: 50000,
+	expectedSalary: 10000,
 	gender: "male",
 	preferJobCategory: "civil engineer",
 	preferJobField: "civil engineer",
@@ -33,12 +33,6 @@ export const aiSearch = async (req, res, next) => {
 		if (!text) {
 			createError(400, "you need to input text")
 		}
-		const inputTextVector = await embeddings.embedQuery(text)
-		const databaseVector = await embeddings.embedQuery("i am engineer student live in bangkok want salary 1500")
-
-		const similarity = cosineSimilarity(inputTextVector, databaseVector);
-		console.log("Similarity Score:", similarity.toFixed(4));
-
 
 		//const structured_llm = llm.withStructuredOutput(userSchema)
 		//const prompt = await promptTemplate.invoke({ text: text, });
