@@ -21,16 +21,15 @@ enum Roles {
 }
 
 model User {
-        id             Int              @id @default(autoincrement())
-        email          String           @unique
-        password       String
-        role           Roles            @default(USER)
-        bookmark       Bookmark[]
-        workExperience WorkExperience[]
-        profile        ProfileUser[]
-        resetTokens    ResetToken[]
-        Province       Province?        @relation(fields: [provinceId], references: [id])
-        provinceId     Int?
+        id           Int            @id @default(autoincrement())
+        email        String         @unique
+        password     String
+        role         Roles          @default(USER)
+        favoriteJob  FavoriteJob[]
+        bookmarkType BookmarkType[]
+        profile      ProfileUser[]
+        resetTokens  ResetToken[]
+
 }
 
 model ResetToken {
@@ -62,36 +61,113 @@ enum Gender {
         OTHER
 }
 
+enum StartDate {
+        NOW
+        TWOWEEK
+        FOURWEEK
+        EIGHTWEEK
+        TWELEWEEKPLUS
+}
+
+enum JobPreferences {
+        FULLTIME
+        PARTTIME
+        CONTRACT
+        CASUAL
+}
+
+
+
 model ProfileUser {
-        id             Int        @id @default(autoincrement())
-        user_id        Int
-        user           User       @relation(fields: [user_id], references: [id])
-        age            Int?
+        id             Int             @id @default(autoincrement())
+        firstname      String?
+        lastname       String?
+        birthdate      String?
         address        String?
-        skills         String?
-        phone          String?    @unique
-        education      String?
-        linkResume     String?
-        gender         Gender?
-        expectedSalary Int?
-        firstName      String?
-        lastName       String?
-        preferredJob   String?
+        phone          String?         @unique
+        gender         Gender? //ENUM
+        expectsalary   Int?
+        startdate      StartDate? //ENUM
+        jobpreferences JobPreferences?
+
+        user_id Int
+        user    User @relation(fields: [user_id], references: [id])
+
+        bookmarkType   BookmarkType[]
+        province      Province[]
+        workExperience WorkExperience[]
+        education      Education[]
+        Skills         Skills[]
+        Certificate    Certificate[]
+        Languages      Languages[]
+        Resume         Resume[]
         jobApply       JobApply[]
+}
+
+model Resume {
+        id  Int    @id @default(autoincrement())
+        url String
+
+        profile_id  Int
+        profileUser ProfileUser? @relation(fields: [profile_id], references: [id])
+}
+
+model Languages {
+        id   Int    @id @default(autoincrement())
+        name String
+
+        profile_id  Int
+        profileUser ProfileUser? @relation(fields: [profile_id], references: [id])
+}
+
+model Certificate {
+        id  Int    @id @default(autoincrement())
+        url String
+
+        profile_id  Int
+        profileUser ProfileUser? @relation(fields: [profile_id], references: [id])
+}
+
+model Skills {
+        id   Int    @id @default(autoincrement())
+        name String
+
+        profile_id  Int
+        profileUser ProfileUser? @relation(fields: [profile_id], references: [id])
+}
+
+model Education {
+        id             Int     @id @default(autoincrement())
+        qualification  String
+        institute      String
+        graduationYear Int
+        otherCourses   String?
+
+        profile_id  Int
+        profileUser ProfileUser? @relation(fields: [profile_id], references: [id])
 }
 
 model WorkExperience {
         id          Int       @id @default(autoincrement())
-        user_id     Int
-        user        User      @relation(fields: [user_id], references: [id])
+        profile_id  Int
         jobPosition String?
         companyname     String?
         salary       Int?
         startDate   DateTime?
         endDate     DateTime?
+
+        profileUser ProfileUser? @relation(fields: [profile_id], references: [id])
 }
 
-model Bookmark {
+model BookmarkType {
+        id          Int          @id @default(autoincrement())
+        user        User?        @relation(fields: [user_id], references: [id])
+        profileUser ProfileUser? @relation(fields: [profile_id], references: [id])
+        profile_id  Int?
+        user_id     Int?
+}
+
+model FavoriteJob {
         id      Int     @id @default(autoincrement())
         user_id Int
         job_id  Int
@@ -114,17 +190,17 @@ enum PostStatus {
 }
 
 model JobPost {
-        id             Int        @id @default(autoincrement())
+        id             Int           @id @default(autoincrement())
         company_id     Int
-        company        Company    @relation(fields: [company_id], references: [id])
+        company        Company       @relation(fields: [company_id], references: [id])
         title          String
         jobDescription String
         address        String
         salary         Int
         jobRequirement String
-        createAt       DateTime   @default(now())
-        status         PostStatus @default(ACTIVE)
-        bookmark       Bookmark[]
+        createAt       DateTime      @default(now())
+        status         PostStatus    @default(ACTIVE)
+        favoriteJob    FavoriteJob[]
         jobApply       JobApply[]
         payment        Payment[]
         Province       Province?  @relation(fields: [provinceId], references: [id])
@@ -160,7 +236,8 @@ model Province {
         //relations
         jobPost   JobPost[]
         companies Company[]
-        users     User[]
+        profile_id  Int
+        profileUser ProfileUser? @relation(fields: [profile_id], references: [id])
 
         @@map("provinces")
 }
