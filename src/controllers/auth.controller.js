@@ -95,12 +95,12 @@ export const registerCompany = async(req,res,next) => {
   }
 }
 
-export const loginCompany = async(req,res,next)=>{
+export const loginCompany = async(req,res,next)=>{ 
   try{
     const {email,password} = req.body;
     const company = await findCompany(email)
     const pwOk = await bcrypt.compare(password, company.password)
-    if(!pwOk){
+    if(!pwOk){ 
       throw createError(401, 'Invalid Login')
     }
 
@@ -120,11 +120,11 @@ export const loginCompany = async(req,res,next)=>{
   }
 }
 
-
+ 
 
 // ส่งลิงก์ reset password ไปที่ email
 export const forgotPassword = async (req, res, next) => {
-  try {
+  try { 
     const { email } = req.body;
 
     // หา user จากอีเมล
