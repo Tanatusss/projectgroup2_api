@@ -15,15 +15,15 @@ enum Roles {
 }
 
 model User {
-        id           Int            @id @default(autoincrement())
-        email        String         @unique
+        id           Int                @id @default(autoincrement())
+        email        String             @unique
         password     String
-        role         Roles          @default(USER)
+        role         Roles              @default(USER)
         favoriteJob  FavoriteJob[]
         bookmarkType BookmarkType[]
         profile      ProfileUser[]
         resetTokens  ResetToken[]
-        refreshToken RefreshToken[]
+        refreshToken UserRefreshToken[]
 }
 
 model ResetToken {
@@ -35,18 +35,19 @@ model ResetToken {
 }
 
 model Company {
-        id         Int       @id @default(autoincrement())
-        email      String    @unique
-        name       String?
-        password   String
-        role       Roles     @default(COMPANY)
-        phone      String?   @unique
-        address    String?
-        logoimage  String?
-        link       String?
-        jobPost    JobPost[]
-        Province   Province? @relation(fields: [provinceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-        provinceId Int?
+        id           Int                   @id @default(autoincrement())
+        email        String                @unique
+        name         String?
+        password     String
+        role         Roles                 @default(COMPANY)
+        phone        String?               @unique
+        address      String?
+        logoimage    String?
+        link         String?
+        jobPost      JobPost[]
+        Province     Province?             @relation(fields: [provinceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+        provinceId   Int?
+        refreshToken companyRefreshToken[]
 }
 
 enum Gender {
@@ -245,11 +246,22 @@ model Prompt {
         keywords Json
 }
 
-model RefreshToken {
+model UserRefreshToken {
         id        Int      @id @default(autoincrement())
         token     String   @unique
         userId    Int
         user      User     @relation(fields: [userId], references: [id])
+        createdAt DateTime @default(now())
+        expiredAt DateTime
+        ipAddress String?
+        userAgent String? // device user use to login
+}
+
+model companyRefreshToken {
+        id        Int      @id @default(autoincrement())
+        token     String   @unique
+        companyId Int
+        company   Company  @relation(fields: [companyId], references: [id])
         createdAt DateTime @default(now())
         expiredAt DateTime
         ipAddress String?
