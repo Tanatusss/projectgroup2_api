@@ -1,7 +1,7 @@
 import prisma from "../src/config/prisma.js";
 import { companyData } from "./seeds/companies.js";
 import { jobData } from "./seeds/jobs.js";
-import { provinces } from "./seeds/provinces.js";
+import { provinces } from "./seeds/districts.js";
 
 async function seedDB() {
   try {
