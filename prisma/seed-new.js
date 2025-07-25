@@ -1,20 +1,21 @@
 import prisma from "../src/config/prisma.js";
 import { companyData } from "./seeds/companies.js";
 import { jobData } from "./seeds/jobs.js";
-import { provinces } from "./seeds/districts.js";
+import { districts } from "./seeds/districts.js";
 import { adminData, userData } from "./seeds/usersAndAdmins.js";
+// import { languages } from "./seeds/languages.js"; // Skip for now - requires profile_id
 //npm run seed
 async function seedDB() {
   try {
     console.log("Starting database seeding...");
 
-    // Seed provinces first (foreign key reference)
-    console.log("Seeding provinces...");
-    await prisma.province.createMany({
-      data: provinces,
+    // Seed districts first (foreign key reference)
+    console.log("Seeding districts...");
+    await prisma.district.createMany({
+      data: districts,
       skipDuplicates: true,
     });
-    console.log(`Seeded ${provinces.length} provinces`);
+    console.log(`Seeded ${districts.length} districts`);
 
     // Seed companies
     console.log("Seeding companies...");
