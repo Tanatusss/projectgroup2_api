@@ -78,7 +78,7 @@ model ProfileUser {
         address        String?
         description    String?
         phone          String?         @unique
-        provinces      String?
+        district      String?
         gender         Gender? //ENUM
         expectsalary   Int?
         startdate      StartDate? //ENUM
@@ -87,7 +87,6 @@ model ProfileUser {
         user_id Int
         user    User @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
-        bookmarkType   BookmarkType[]
         workExperience WorkExperience[]
         education      Education[]
         Skills         Skills[]
@@ -157,8 +156,6 @@ model WorkExperience {
 model BookmarkType {
         id          Int          @id @default(autoincrement())
         user        User?        @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
-        profileUser ProfileUser? @relation(fields: [profile_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
-        profile_id  Int?
         user_id     Int?
 }
 
