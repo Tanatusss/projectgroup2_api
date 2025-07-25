@@ -2,7 +2,8 @@ import prisma from "../src/config/prisma.js";
 import { companyData } from "./seeds/companies.js";
 import { jobData } from "./seeds/jobs.js";
 import { provinces } from "./seeds/districts.js";
-
+import { adminData, userData } from "./seeds/usersAndAdmins.js";
+//npm run seed
 async function seedDB() {
   try {
     console.log("Starting database seeding...");
@@ -30,6 +31,22 @@ async function seedDB() {
       skipDuplicates: true,
     });
     console.log(`Seeded ${jobData.length} job posts`);
+
+    //seed users
+    console.log("Seeding users...");
+    await prisma.user.createMany({
+      data: userData,
+      skipDuplicates: true,
+    });
+    console.log(`Seeded ${userData.length} users`);
+
+    //seed admins
+    console.log("Seeding admins...");
+    await prisma.user.createMany({
+      data: adminData,
+      skipDuplicates: true,
+    });
+    console.log(`Seeded ${adminData.length} admins`);
 
     console.log("Database seeding completed successfully!");
   } catch (error) {

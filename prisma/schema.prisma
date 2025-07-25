@@ -82,7 +82,7 @@ model ProfileUser {
         gender         Gender? //ENUM
         expectsalary   Int?
         startdate      StartDate? //ENUM
-        jobpreferences JobPreferences?
+        jobpreferences JobPreferences? //ENUM
 
         user_id Int
         user    User @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
