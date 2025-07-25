@@ -45,8 +45,8 @@ model Company {
         logoimage    String?
         link         String?
         jobPost      JobPost[]
-        Province     Province?             @relation(fields: [provinceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-        provinceId   Int?
+        district     District?             @relation(fields: [districtId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+        districtId   Int?
         refreshToken companyRefreshToken[]
 }
 
@@ -78,11 +78,11 @@ model ProfileUser {
         address        String?
         description    String?
         phone          String?         @unique
-        provinces      String?
+        district       String?
         gender         Gender? //ENUM
         expectsalary   Int?
         startdate      StartDate? //ENUM
-        jobpreferences JobPreferences?
+        jobpreferences JobPreferences? //ENUM
 
         user_id Int
         user    User @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
@@ -198,8 +198,8 @@ model JobPost {
         favoriteJob    FavoriteJob[]
         jobApply       JobApply[]
         payment        Payment[]
-        Province       Province?     @relation(fields: [provinceId], references: [id])
-        provinceId     Int?
+        district       District?     @relation(fields: [districtId], references: [id])
+        districtId     Int?
 
         @@fulltext([title])
         @@fulltext([address])
@@ -225,11 +225,11 @@ model Payment {
         recover_url       String?
 }
 
-model Province {
+model District {
         id             Int      @id @default(autoincrement())
-        provinceCode   Int      @unique
-        provinceNameEn String
-        provinceNameTh String
+        districtCode   Int      @unique
+        districtNameEn String
+        districtNameTh String
         createdAt      DateTime @default(now())
         updatedAt      DateTime @updatedAt
 
@@ -237,7 +237,7 @@ model Province {
         jobPost   JobPost[]
         companies Company[]
 
-        @@map("provinces")
+        @@map("districts")
 }
 
 model Prompt {
