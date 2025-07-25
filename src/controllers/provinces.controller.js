@@ -40,3 +40,4 @@ export const searchProvinces = async (req, res) => {
     });
   }
 };
+
