@@ -100,4 +100,10 @@ export const deleteJobPost = async(req,res,next)=>{
   }
 }
 
-
+// export const getAllPostJob = async(req,res,next)=>{
+//   try{
+//     const {id} = req.
+//   }catch(error){
+//     next(error);
+//   }
+// }
