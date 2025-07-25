@@ -2,7 +2,7 @@ import { promptTemplate } from "../ai_utils/promptTemplate.js"
 import { userSchema } from "../ai_utils/aiSchema.js"
 import { llm, embeddings } from "../ai_utils/llm_model.js"
 import { createError } from "../utils/createError.js"
-import { serviceAiSearch } from "../services/ai.service.js"
+import { addToPromptDb, getPromptDbByCategory, serviceKeywordsSearch } from "../services/ai.service.js"
 import { rateSimilarity } from "../ai_utils/cosineSimilarity.js"
 
 // for test delete later
@@ -31,23 +31,27 @@ const testDatabase = [
 export const aiSearch = async (req, res, next) => {
 	const acceptable_similarity = 0.8500
 	try {
-		const text = req.body.text
+		const { text, category } = req.body
 		if (!text) {
 			createError(400, "you need to input text")
 		}
-		const prompt_db_response = JSON.stringify(testDatabase)
-		const promptList = JSON.parse(prompt_db_response)
-		const maxSimilarity = await rateSimilarity(text, promptList)
+		const prompt_db_response = await getPromptDbByCategory(category)
+		const maxSimilarity = await rateSimilarity(text, prompt_db_response)
+		let keywords;
 		if (maxSimilarity.similarity > acceptable_similarity) {
+			keywords = JSON.parse(maxSimilarity.keywords)
+
 			console.log("use keyword from maxSimilarity")
+			console.log(keywords)
 		}
 		else {
 			console.log("use ai")
+			//const structured_llm = llm.withStructuredOutput(userSchema)
+			//const prompt = await promptTemplate.invoke({ text: text, });
+			//let aiResponse = await structured_llm.invoke(prompt);
+			await addToPromptDb(newKeywords)
 		}
-		//const structured_llm = llm.withStructuredOutput(userSchema)
-		//const prompt = await promptTemplate.invoke({ text: text, });
-		//let aiResponse = await structured_llm.invoke(prompt);
-		const response = await serviceAiSearch(testResponse)
+		const response = await serviceKeywordsSearch(keywords)
 		res.status(200).json({ result: response })
 	} catch (err) {
 		next(err)
