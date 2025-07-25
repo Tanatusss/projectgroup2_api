@@ -13,7 +13,7 @@ authRouter.post("/auth/company-login", validate(loginCompanySchema), loginCompan
 authRouter.post("/auth/forgot-password", forgotPassword)
 authRouter.post("/auth/reset-password", resetPassword)
 
-
+authRouter.get("auth/refresh-token", () => { console.log("refresh") })
 
 
 
