@@ -19,11 +19,11 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(
-  cors({
-    origin: true,
-    methods: ["GET", "POST", "PATCH", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
+	cors({
+		origin: true,
+		methods: ["GET", "POST", "PATCH", "DELETE"],
+		allowedHeaders: ["Content-Type", "Authorization"],
+	})
 );
 app.use(helmet());
 
@@ -38,9 +38,9 @@ app.use("/api", experienceRouter);
 app.use("/api", aiRouter);
 app.use("/api/provinces", provincesRouter);
 
-// app.use(error)
-// app.use(notFound)
+app.use(error)
+app.use(notFound)
 
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+	console.log(`Server running at http://localhost:${PORT}`);
 });

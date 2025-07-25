@@ -29,3 +29,8 @@ export const serviceAiSearch = async (keywords) => {
 	})
 	return result
 }
+
+export const checkPromptDb = async (category) => {
+	//const result = await prisma
+	return category
+}
