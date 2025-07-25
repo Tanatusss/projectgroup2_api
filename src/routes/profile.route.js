@@ -1,9 +1,11 @@
 import express from "express"
+import * as profileController from "../controllers/profile.controller.js"
+import { authCheck } from "../middlewares/authCheck.js"
 
 const profileRouter = express.Router()
 
-profileRouter.get("/profiles/:id", () => {console.log("Get profile by id")})
-profileRouter.patch("/profiles/:id", () => {console.log("Edit profiles by id")})
+profileRouter.get("/profiles/:id",authCheck ,profileController.getProfileById)
+profileRouter.patch("/profiles/:id", authCheck, profileController.updateProfileById)
 
 
 
