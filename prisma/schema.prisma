@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
         provider = "prisma-client-js"
         output   = "../src/generated/prisma"
@@ -21,37 +15,39 @@ enum Roles {
 }
 
 model User {
-        id           Int            @id @default(autoincrement())
-        email        String         @unique
+        id           Int                @id @default(autoincrement())
+        email        String             @unique
         password     String
-        role         Roles          @default(USER)
+        role         Roles              @default(USER)
         favoriteJob  FavoriteJob[]
         bookmarkType BookmarkType[]
         profile      ProfileUser[]
         resetTokens  ResetToken[]
+        refreshToken UserRefreshToken[]
 }
 
 model ResetToken {
         id        Int      @id @default(autoincrement())
         token     String   @unique
         userId    Int
-        user      User     @relation(fields: [userId], references: [id])
+        user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
         expiresAt DateTime
 }
 
 model Company {
-        id         Int       @id @default(autoincrement())
-        email      String    @unique
-        name       String?
-        password   String
-        role       Roles     @default(COMPANY)
-        phone      String?   @unique
-        address    String?
-        logoimage  String?
-        link       String?
-        jobPost    JobPost[]
-        Province   Province? @relation(fields: [provinceId], references: [id])
-        provinceId Int?
+        id           Int                   @id @default(autoincrement())
+        email        String                @unique
+        name         String?
+        password     String
+        role         Roles                 @default(COMPANY)
+        phone        String?               @unique
+        address      String?
+        logoimage    String?
+        link         String?
+        jobPost      JobPost[]
+        Province     Province?             @relation(fields: [provinceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+        provinceId   Int?
+        refreshToken companyRefreshToken[]
 }
 
 enum Gender {
@@ -89,7 +85,7 @@ model ProfileUser {
         jobpreferences JobPreferences?
 
         user_id Int
-        user    User @relation(fields: [user_id], references: [id])
+        user    User @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
         bookmarkType   BookmarkType[]
         workExperience WorkExperience[]
@@ -107,7 +103,7 @@ model Resume {
         url  String
 
         profile_id  Int
-        profileUser ProfileUser? @relation(fields: [profile_id], references: [id])
+        profileUser ProfileUser? @relation(fields: [profile_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
 
 model Languages {
@@ -115,7 +111,7 @@ model Languages {
         name String
 
         profile_id  Int
-        profileUser ProfileUser? @relation(fields: [profile_id], references: [id])
+        profileUser ProfileUser? @relation(fields: [profile_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
 
 model Certificate {
@@ -124,7 +120,7 @@ model Certificate {
         url  String
 
         profile_id  Int
-        profileUser ProfileUser? @relation(fields: [profile_id], references: [id])
+        profileUser ProfileUser? @relation(fields: [profile_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
 
 model Skills {
@@ -132,7 +128,7 @@ model Skills {
         name String
 
         profile_id  Int
-        profileUser ProfileUser? @relation(fields: [profile_id], references: [id])
+        profileUser ProfileUser? @relation(fields: [profile_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
 
 model Education {
@@ -143,7 +139,7 @@ model Education {
         otherCourses   String?
 
         profile_id  Int
-        profileUser ProfileUser? @relation(fields: [profile_id], references: [id])
+        profileUser ProfileUser? @relation(fields: [profile_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
 
 model WorkExperience {
@@ -155,13 +151,13 @@ model WorkExperience {
         startDate   DateTime?
         endDate     DateTime?
 
-        profileUser ProfileUser? @relation(fields: [profile_id], references: [id])
+        profileUser ProfileUser? @relation(fields: [profile_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
 
 model BookmarkType {
         id          Int          @id @default(autoincrement())
-        user        User?        @relation(fields: [user_id], references: [id])
-        profileUser ProfileUser? @relation(fields: [profile_id], references: [id])
+        user        User?        @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+        profileUser ProfileUser? @relation(fields: [profile_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
         profile_id  Int?
         user_id     Int?
 }
@@ -170,16 +166,16 @@ model FavoriteJob {
         id      Int     @id @default(autoincrement())
         user_id Int
         job_id  Int
-        user    User    @relation(fields: [user_id], references: [id])
-        job     JobPost @relation(fields: [job_id], references: [id])
+        user    User    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+        job     JobPost @relation(fields: [job_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
 
 model JobApply {
         id         Int         @id @default(autoincrement())
         profile_id Int
         job_id     Int
-        profile    ProfileUser @relation(fields: [profile_id], references: [id])
-        job        JobPost     @relation(fields: [job_id], references: [id])
+        profile    ProfileUser @relation(fields: [profile_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+        job        JobPost     @relation(fields: [job_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
         applyAt    DateTime    @default(now())
 }
 
@@ -191,7 +187,7 @@ enum PostStatus {
 model JobPost {
         id             Int           @id @default(autoincrement())
         company_id     Int
-        company        Company       @relation(fields: [company_id], references: [id])
+        company        Company       @relation(fields: [company_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
         title          String
         jobDescription String
         address        String
@@ -219,7 +215,7 @@ enum PaymentStatus {
 model Payment {
         id                Int           @id @default(autoincrement())
         job_id            Int
-        job               JobPost       @relation(fields: [job_id], references: [id])
+        job               JobPost       @relation(fields: [job_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
         session_url       String
         status            PaymentStatus @default(PENDING)
         paymentDate       DateTime?
@@ -242,4 +238,32 @@ model Province {
         companies Company[]
 
         @@map("provinces")
+}
+
+model Prompt {
+        id       Int    @id @default(autoincrement())
+        text     String
+        keywords Json
+}
+
+model UserRefreshToken {
+        id        Int      @id @default(autoincrement())
+        token     String   @unique
+        userId    Int
+        user      User     @relation(fields: [userId], references: [id])
+        createdAt DateTime @default(now())
+        expiredAt DateTime
+        ipAddress String?
+        userAgent String? // device user use to login
+}
+
+model companyRefreshToken {
+        id        Int      @id @default(autoincrement())
+        token     String   @unique
+        companyId Int
+        company   Company  @relation(fields: [companyId], references: [id])
+        createdAt DateTime @default(now())
+        expiredAt DateTime
+        ipAddress String?
+        userAgent String? // device user use to login
 }

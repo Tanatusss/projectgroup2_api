@@ -7,24 +7,24 @@ export const loginUserSchema = object({
 })
 
 export const registerUserSchema = object({
-email: string().required('กรุณากรอกemail'),
+	email: string().required('กรุณากรอกemail'),
 	password: string().min(4).required("กรุณากรอกpassword"),
 	confirmPassword: string().oneOf([ref("password")], "รหัสผ่านไม่ตรงกัน").required("กรุณากรอกยืนยันรหัสผ่าน"),
 })
 
 export const loginCompanySchema = object({
 	email: string(),
-	password: string(), 
+	password: string(),
 })
 
 export const registerCompanySchema = object({
-email: string().required('กรุณากรอกemail'),
+	email: string().required('กรุณากรอกemail'),
 	password: string().min(4).required("กรุณากรอกpassword"),
 	confirmPassword: string().oneOf([ref("password")], "รหัสผ่านไม่ตรงกัน").required("กรุณากรอกยืนยันรหัสผ่าน"),
 })
 
 export const aiSchema = object({
-	text: string().min(20, "you need to describe more to use ai search").required()
+	text: string().min(50, "you need to describe more to use ai search").required()
 })
 
 
