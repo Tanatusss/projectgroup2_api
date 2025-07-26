@@ -1,10 +1,11 @@
 import express from "express"
+import { authCheck } from "../middlewares/authCheck.js"
+import * as skillController from "../controllers/skill.controller.js"
 
 const skillRouter = express.Router()
 
-skillRouter.get("/skills", () => console.log("Get all skills"))
-skillRouter.get("/profiles/:id/skills", () => console.log("Get skill by profile id"))
-skillRouter.patch("/profiles/:id/skills", () => console.log("Edit skill by profile id"))
+skillRouter.get("/profiles/:id/skills", authCheck, skillController.getSkillsByProfileId)
+skillRouter.patch("/profiles/:id/skills", authCheck, skillController.updateSkillsByProfileId)
 
 
 
