@@ -12,25 +12,28 @@ import experienceRouter from "./routes/experience.route.js";
 import aiRouter from "./routes/ai.route.js";
 import { error } from "./utils/error.js";
 import { notFound } from "./utils/not-found.js";
-
+import cookieParser from "cookie-parser";
 import educationRouter from "./routes/education.route.js";
 import resumeRouter from "./routes/resume.route.js";
 import certificateRouter from "./routes/certificate.route.js";
 import skillRouter from "./routes/skill.route.js";
 import districtsRouter from "./routes/district.route.js";
 
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(
-  cors({
-    origin: true,
-    methods: ["GET", "POST", "PATCH", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
+	cors({
+		origin: true,
+		methods: ["GET", "POST", "PATCH", "DELETE"],
+		allowedHeaders: ["Content-Type", "Authorization"],
+		credentials: true
+	})
 );
 app.use(helmet());
+app.use(cookieParser())
 
 app.use("/api", authRouter);
 app.use("/api", userRouter);
