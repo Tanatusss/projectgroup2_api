@@ -27,12 +27,18 @@ export const registerUser = async (req, res, next) => {
 			createError(400, 'Email already exist!!!')
 		}
 		const hashPassword = bcrypt.hashSync(password, 10)
-		console.log(password);
 		const newUser = {
 			email,
 			password: hashPassword
 		}
 		const result = await createUser(newUser)
+
+		await prisma.profileUser.create({
+			data: {
+				user_id: result.id
+			}
+		});
+
 		res.json({ message: `Register success`, result })
 
 	} catch (error) {
@@ -56,7 +62,7 @@ export const loginUser = async (req, res, next) => {
 		const refreshToken = signRefreshToken(payload)
 		console.log("accessToken", accessToken)
 		console.log("refreshToken", refreshToken)
-		await newRefreshToken(uer.id, user.role, refreshToken)
+		await newRefreshToken(user.id, user.role, refreshToken)
 		res.cookie("refreshToken", refreshToken, {
 			httpOnly: true,
 			sameSite: "strict",
