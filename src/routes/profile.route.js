@@ -1,11 +1,11 @@
 import express from "express"
+import * as profileController from "../controllers/profile.controller.js"
+import { authCheck } from "../middlewares/authCheck.js"
 
 const profileRouter = express.Router()
 
-profileRouter.get("/profile/:profile_id", () => console.log("Get Profile By Id"))
-profileRouter.post("/profile", () => console.log("Create Profile"))
-profileRouter.patch("/profile/:profile_id", () => console.log("Edit Profile By Id"))
-profileRouter.delete("/profile/:profile_id", () => console.log("Delete Profile By Id"))
+profileRouter.get("/profiles/:id",authCheck ,profileController.getProfileById)
+profileRouter.patch("/profiles/:id", authCheck, profileController.updateProfileById)
 
 
 
