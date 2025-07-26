@@ -13,6 +13,7 @@ import aiRouter from "./routes/ai.route.js";
 import { error } from "./utils/error.js";
 import { notFound } from "./utils/not-found.js";
 import provincesRouter from "./routes/provinces.route.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -27,6 +28,7 @@ app.use(
 	})
 );
 app.use(helmet());
+app.use(cookieParser())
 
 app.use("/api", authRouter);
 app.use("/api", userRouter);

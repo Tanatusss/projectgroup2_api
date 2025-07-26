@@ -1,7 +1,6 @@
 import express from "express"
 import { loginCompanySchema, loginUserSchema, registerCompanySchema, registerUserSchema, validate } from "../middlewares/validator.js"
-import { forgotPassword, loginCompany, loginUser, registerCompany, registerUser, resetPassword } from "../controllers/auth.controller.js"
-import { authCheck } from "../middlewares/authCheck.js"
+import { forgotPassword, loginCompany, loginUser, refreshAccessToken, registerCompany, registerUser, resetPassword } from "../controllers/auth.controller.js"
 
 const authRouter = express.Router()
 
@@ -13,7 +12,10 @@ authRouter.post("/auth/company-login", validate(loginCompanySchema), loginCompan
 authRouter.post("/auth/forgot-password", forgotPassword)
 authRouter.post("/auth/reset-password", resetPassword)
 
-authRouter.get("auth/refresh-token", () => { console.log("refresh") })
+authRouter.post("/auth/google/user-signin", () => { console.log("user-google-signin") })
+authRouter.post("/auth/google/company-signin", () => { console.log("company-google-signin") })
+
+authRouter.get("auth/refresh-token", refreshAccessToken)
 
 
 
