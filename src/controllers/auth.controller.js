@@ -22,17 +22,23 @@ export const registerUser = async (req, res, next) => {
 				email: email,
 			}
 		})
-
 		if (user) {
 			createError(400, 'Email already exist!!!')
 		}
 		const hashPassword = bcrypt.hashSync(password, 10)
-		console.log(password);
 		const newUser = {
 			email,
 			password: hashPassword
 		}
+
 		const result = await createUser(newUser)
+
+		await prisma.profileUser.create({
+			data: {
+				user_id: result.id
+			}
+		});
+
 		res.json({ message: `Register success`, result })
 
 	} catch (error) {
