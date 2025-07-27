@@ -62,7 +62,7 @@ export const loginUser = async (req, res, next) => {
 		const refreshToken = signRefreshToken(payload)
 		console.log("accessToken", accessToken)
 		console.log("refreshToken", refreshToken)
-		await newRefreshToken(uer.id, user.role, refreshToken)
+		await newRefreshToken(user.id, user.role, refreshToken)
 		res.cookie("refreshToken", refreshToken, {
 			httpOnly: true,
 			sameSite: "strict",
