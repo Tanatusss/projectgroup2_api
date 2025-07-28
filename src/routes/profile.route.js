@@ -6,6 +6,8 @@ const profileRouter = express.Router()
 
 profileRouter.get("/profiles/:id",authCheck ,profileController.getProfileById)
 profileRouter.patch("/profiles/:id", authCheck, profileController.updateProfileById)
+profileRouter.patch("/profile/:id", authCheck, profileController.updateProfileByIdWithWorkEx)
+
 
 
 

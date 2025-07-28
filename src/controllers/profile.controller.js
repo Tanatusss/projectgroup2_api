@@ -14,7 +14,6 @@ export const getProfileById = async (req, res, next) => {
         Certificate: true,
         Languages: true,
         Resume: true,
-        bookmarkType: true,
         jobApply: true
       }
     });
@@ -62,6 +61,68 @@ export const updateProfileById = async (req, res, next) => {
     });
 
     res.json(updated);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const updateProfileByIdWithWorkEx = async (req, res, next) => {
+  const { id } = req.params;
+  const {
+    firstname,
+    lastname,
+    address,
+    description,
+    phone,
+    district,
+    gender,
+    expectsalary,
+    startdate,
+    jobpreferences,
+    workExperience 
+  } = req.body;
+
+  try {
+    
+    const updatedProfile = await prisma.profileUser.update({
+      where: { id: parseInt(id) },
+      data: {
+        firstname,
+        lastname,
+        address,
+        description,
+        phone,
+        district,
+        gender,
+        expectsalary,
+        startdate,
+        jobpreferences
+      }
+    });
+
+    
+    if (Array.isArray(workExperience)) {
+      
+      await prisma.workExperience.deleteMany({
+        where: { profile_id: parseInt(id) }
+      });
+
+      
+      if (workExperience.length > 0) {
+        await prisma.workExperience.createMany({
+          data: workExperience.map(exp => ({
+            profile_id: parseInt(id),
+            jobPosition: exp.jobPosition,
+            companyname: exp.companyname,
+            salary: exp.salary,
+            startDate: exp.startDate,
+            endDate: exp.endDate,
+          }))
+        });
+      }
+    }
+
+    res.json({ message: "Profile updated", updatedProfile });
   } catch (err) {
     next(err);
   }

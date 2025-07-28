@@ -1,11 +1,14 @@
 import express from "express"
+import * as resumeController from "../controllers/resume.controller.js"
+import { authCheck } from "../middlewares/authCheck.js"
+import uploadPDFToMemory from "../middlewares/uploadPDFToMemory.js"
 
 const resumeRouter = express.Router()
 
-resumeRouter.get("/profiles/:id/resumes", () => console.log("Get Resume By Id"))
-resumeRouter.post("/profiles/:id/resumes", () => console.log("Create Resume"))
-resumeRouter.patch("/resumes/:id", () => console.log("Edit Resume By Id"))
-resumeRouter.delete("/resumes/:id", () => console.log("Delete Resume By Id"))
+resumeRouter.get("/profiles/:id/resumes", authCheck, resumeController.getResumes)
+resumeRouter.post("/profiles/:id/resumes", authCheck, uploadPDFToMemory, resumeController.uploadResume)
+resumeRouter.patch("/resumes/:id", authCheck, resumeController.updateResume)
+resumeRouter.delete("/resumes/:id", authCheck, resumeController.deleteResume)
 
 
 

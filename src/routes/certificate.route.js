@@ -1,11 +1,13 @@
 import express from "express"
-
+import * as certificateController from "../controllers/certificate.controller.js"
+import { authCheck } from "../middlewares/authCheck.js"
+import uploadPDFToMemory from "../middlewares/uploadPDFToMemory.js"
 const certificateRouter = express.Router()
 
-certificateRouter.get("/profiles/:id/certificates", () => console.log("Get Certificate By Id"))
-certificateRouter.post("/profiles/:id/certificates", () => console.log("Create Certificate"))
-certificateRouter.patch("/certificates/:id", () => console.log("Edit Certificate By Id"))
-certificateRouter.delete("/certificates/:id", () => console.log("Delete Certificate By Id"))
+certificateRouter.get("/profiles/:id/certificates", authCheck, certificateController.getCertificatesByProfile)
+certificateRouter.post("/profiles/:id/certificates", authCheck, uploadPDFToMemory, certificateController.uploadCertificate )
+certificateRouter.patch("/certificates/:id", authCheck, certificateController.updateCertificate)
+certificateRouter.delete("/certificates/:id", authCheck, certificateController.deleteCertificate)
 
 
 

@@ -1,6 +1,6 @@
 import prisma from "../config/prisma.js"
 
-export const serviceAiSearch = async (keywords) => {
+export const serviceKeywordsSearch = async (keywords) => {
 	const {
 		age,
 		education,
@@ -30,7 +30,15 @@ export const serviceAiSearch = async (keywords) => {
 	return result
 }
 
-export const checkPromptDb = async (category) => {
-	//const result = await prisma
-	return category
+export const getPromptDbByCategory = async (category) => {
+	const result = await prisma.prompt.findMany({
+		where: { category }
+	})
+	return result
+}
+
+export const addToPromptDb = async (data) => {
+	const result = prisma.prompt.create({
+		data
+	})
 }
