@@ -13,9 +13,10 @@ export async function rateSimilarity(base, textArr) {
 	const baseTextVector = await embeddings.embedQuery(base)
 	for (let i = 0; i < textArr.length; i++) {
 		const text = textArr[i]?.text;
+		const keywords = textArr[i]?.keywords;
 		const textVector = await embeddings.embedQuery(text)
 		const similarity = cosineSimilarity(baseTextVector, textVector)
-		const new_obj = { id: textArr[i].id, similarity: similarity.toFixed(4) }
+		const new_obj = { id: textArr[i].id, similarity: similarity.toFixed(4), keywords }
 		similarityList.push(new_obj)
 	}
 	const maxRating = Math.max(...similarityList.map(text => text.similarity))
