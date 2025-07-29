@@ -47,7 +47,6 @@ model Company {
         jobPost      JobPost[]
         district     District?             @relation(fields: [districtId], references: [id], onDelete: Cascade, onUpdate: Cascade)
         districtId   Int?
-        refreshToken companyRefreshToken[]
 }
 
 enum Gender {
