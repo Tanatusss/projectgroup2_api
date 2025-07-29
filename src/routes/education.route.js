@@ -20,7 +20,7 @@ const educationRouter = express.Router();
 // educationRouter.delete("/educations/:id", () => console.log("Delete Education By Id"))
 
 // 1. แสดงข้อมูลการศึกษาทั้งหมดของ profile
-router.get(
+educationRouter.get(
   "/profiles/:profile_id/educations",
   authCheck,
   checkProfileAccess,
@@ -28,7 +28,7 @@ router.get(
 );
 
 // 2. ดูข้อมูลการศึกษารายการเดียว
-router.get(
+educationRouter.get(
   "/educations/:id",
   authCheck,
   checkEducationOwnership,
@@ -36,7 +36,7 @@ router.get(
 );
 
 // 3. เพิ่มข้อมูลการศึกษาใหม่
-router.post(
+educationRouter.post(
   "/profiles/:profile_id/educations",
   authCheck,
   checkProfileAccess,
@@ -44,7 +44,7 @@ router.post(
 );
 
 // 4. แก้ไขข้อมูลการศึกษา
-router.patch(
+educationRouter.patch(
   "/educations/:id",
   authCheck,
   checkEducationOwnership,
@@ -52,7 +52,7 @@ router.patch(
 );
 
 // 5. ลบข้อมูลการศึกษา
-router.delete(
+educationRouter.delete(
   "/educations/:id",
   authCheck,
   checkEducationOwnership,

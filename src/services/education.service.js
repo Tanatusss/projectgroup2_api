@@ -1,4 +1,4 @@
-import { prisma } from "../config/prisma.js";
+import prisma from "../config/prisma.js";
 
 // Helper function: แปลง ID ที่อาจเป็น string ให้เป็น number
 const toInt = (v) => (v === undefined || v === null ? undefined : Number(v));

@@ -1,7 +1,8 @@
 // ตัวอย่างการใช้ Roles จาก schema ใหม่
 import jwt from "jsonwebtoken";
 import { createError } from "../utils/createError.js";
-import { Roles } from "../generated/prisma"; // นำเข้า enum Roles จาก Prisma
+import pkg from "@prisma/client"; // นำเข้า Prisma Client
+const { Roles } = pkg;
 
 export function authCheck(req, res, next) {
   try {

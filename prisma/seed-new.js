@@ -1,5 +1,5 @@
 import prisma from "../src/config/prisma.js";
-import { companyData } from "./seeds/companies.js";
+import { companyProfileData } from "./seeds/companies.js";
 import { jobData } from "./seeds/jobs.js";
 import { districts } from "./seeds/districts.js";
 import { adminData, userData } from "./seeds/usersAndAdmins.js";
@@ -22,10 +22,10 @@ async function seedDB() {
     // Seed companies
     console.log("Seeding companies...");
     await prisma.company.createMany({
-      data: companyData,
+      data: companyProfileData,
       skipDuplicates: true,
     });
-    console.log(`Seeded ${companyData.length} companies`);
+    console.log(`Seeded ${companyProfileData.length} companies`);
 
     // Seed jobs
     console.log("Seeding jobs...");
