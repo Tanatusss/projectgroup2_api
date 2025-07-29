@@ -10,6 +10,10 @@ export const uploadCertificate = async (req, res, next) => {
   const file = req.file
   const { name } = req.body
 
+  if (req.user.id !== profileId) {
+    createError(403, "You are not allowed to upload to this profile")
+  }
+
   if (!file) return res.status(400).json({ error: 'No file uploaded' })
   if (!name) return res.status(400).json({ error: 'Name is required' })
 
