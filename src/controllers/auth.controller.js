@@ -21,8 +21,28 @@ export const registerUser = async (req, res, next) => {
 			password: hashPassword,
 			role
 		}
-		await createUser(newUser)
-		res.status(200).json({ message: `Register success` })
+		const result = await createUser(newUser)
+
+		if (result.role === "USER") {
+			await prisma.profileUser.create({
+				data: {
+					user_id: result.id
+				}
+			});
+		}
+
+		if (result.role === "COMPANY") {
+			await prisma.company.create({
+				data: {
+					user_id: result.id
+				}
+			});
+		}
+
+
+
+
+		res.json({ message: `Register success`, result })
 	} catch (error) {
 		next(error)
 	}
