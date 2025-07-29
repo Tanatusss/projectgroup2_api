@@ -12,6 +12,7 @@ export const createJobPost = async (req, res, next) => {
       address,
       salary,
       jobRequirement,
+      typejob
       
     } = req.body
     if (!id) {
@@ -24,6 +25,7 @@ export const createJobPost = async (req, res, next) => {
         address,
         salary,
         jobRequirement,
+        typejob,
         company_id: +id 
     })
 
