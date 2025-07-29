@@ -1,5 +1,5 @@
-import prisma from "../config/prisma";
-import { createError } from "../utils/createError";
+import prisma from "../config/prisma.js";
+import { createError } from "../utils/createError.js";
 
 export const getAllPostJob = async(req,res,next)=>{
   try{
@@ -7,7 +7,7 @@ export const getAllPostJob = async(req,res,next)=>{
       include: {
         company: {
           select: {
-            name: true,
+            companyname: true,
             logoimage: true,
           },
         },
@@ -23,20 +23,20 @@ export const getAllPostJob = async(req,res,next)=>{
 }
 
 
-export const getJobById = async (req, res, next) => {
+export const getPostJobById = async (req, res, next) => {
   try {
-    const { job_id } = req.params;
-    if (!job_id) {
+    const { id } = req.params;
+    if (!id) {
       return createError(400, "Missing required fields");
     }
     const job = await prisma.jobPost.findUnique({
       where: {
-        id: +job_id,
+        id: +id,
       },
       include: {
         company: {
           select: {
-            name: true,
+            companyname: true,
             logoimage: true,
           },
         },
@@ -70,29 +70,21 @@ export const getAllCompany = async(req,res,next)=>{
 
 export const getCompanyById = async (req, res, next) => {
   try {
-    const { job_id } = req.params;
-    if (!job_id) {
+    const { id } = req.params;
+    if (!id) {
       return createError(400, "Missing required fields");
     }
-    const job = await prisma.jobPost.findUnique({
+    const company = await prisma.company.findUnique({
       where: {
-        id: +job_id,
-      },
-      include: {
-        company: {
-          select: {
-            name: true,
-            logoimage: true,
-          },
-        },
-      },
+        id: +id,
+      } 
     });
-    if (!job) {
-      return createError(404, "Job not found");
+    if (!company) {
+      return createError(404, "Company not found");
     }
     res.json({
-      msg: "Get job by id success",
-      job,
+      msg: "Get company by id success",
+      company,
     });
   } catch (error) {
     next(error);
