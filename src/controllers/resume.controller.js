@@ -16,11 +16,14 @@ export const getResumes = async (req, res, next) => {
   }
 }
 
-
 export const uploadResume = async (req, res, next) => {
   const profileId = parseInt(req.params.id)
   const file = req.file
   const { name } = req.body
+
+  if(req.user.id !== profileId) {
+    createError(403, "You are not allowed to upload to this profile")
+  }
 
   if (!file) return res.status(400).json({ error: 'No file uploaded' })
   if (!name) return res.status(400).json({ error: 'Name is required' })
@@ -54,8 +57,6 @@ export const uploadResume = async (req, res, next) => {
     next(err)
   }
 }
-
-
 
 export const updateResume = async (req, res, next) => {
   const id = parseInt(req.params.id)

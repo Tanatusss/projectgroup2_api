@@ -61,5 +61,5 @@ app.use("/api/districts", districtsRouter);
 // app.use(notFound);
 
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+	console.log(`Server running at http://localhost:${PORT}`);
 });
