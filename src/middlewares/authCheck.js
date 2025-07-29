@@ -4,6 +4,7 @@ import { createError } from "../utils/createError.js"
 export function authCheck(req, res, next) {
 	try {
 		const header = req.headers.authorization
+		
 		if (!header) {
 			createError(401, "unauthorized")
 		}

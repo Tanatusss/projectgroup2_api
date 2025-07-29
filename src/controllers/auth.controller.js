@@ -126,7 +126,7 @@ export const loginCompany = async (req, res, next) => {
 		}
 		const accessToken = signToken(payload)
 		const refreshToken = signRefreshToken(payload)
-		console.log("token", token)
+
 		await newRefreshToken(company.id, company.role, refreshToken)
 		res.cookie("refreshToken", refreshToken, {
 			httpOnly: true,
