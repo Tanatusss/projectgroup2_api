@@ -20,6 +20,7 @@ import skillRouter from "./routes/skill.route.js";
 import districtsRouter from "./routes/district.route.js";
 import languageRouter from "./routes/language.route.js";
 import publicRouter from "./routes/public.route.js";
+import favoriteRouter from "./routes/favorite.route.js";
 
 
 const app = express();
@@ -47,6 +48,9 @@ app.use("/api", certificateRouter);
 app.use("/api", skillRouter);
 app.use("/api", languageRouter);
 app.use("/api",publicRouter)
+app.use("/api", favoriteRouter);
+
+
 
 
 app.use("/api", companyRouter);
