@@ -1,26 +1,17 @@
 import { object, ref, string, number } from "yup"
+import { Roles } from "../generated/prisma"
 
 
-export const loginUserSchema = object({
+export const loginSchema = object({
 	email: string(),
 	password: string(),
 })
 
-export const registerUserSchema = object({
+export const registerSchema = object({
 	email: string().required('กรุณากรอกemail'),
 	password: string().min(4).required("กรุณากรอกpassword"),
 	confirmPassword: string().oneOf([ref("password")], "รหัสผ่านไม่ตรงกัน").required("กรุณากรอกยืนยันรหัสผ่าน"),
-})
-
-export const loginCompanySchema = object({
-	email: string(),
-	password: string(),
-})
-
-export const registerCompanySchema = object({
-	email: string().required('กรุณากรอกemail'),
-	password: string().min(4).required("กรุณากรอกpassword"),
-	confirmPassword: string().oneOf([ref("password")], "รหัสผ่านไม่ตรงกัน").required("กรุณากรอกยืนยันรหัสผ่าน"),
+	role: string().oneOf(Object.values(Roles)).required("missing role")
 })
 
 export const aiSchema = object({
