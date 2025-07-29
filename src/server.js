@@ -4,7 +4,7 @@ import helmet from "helmet";
 import authRouter from "./routes/auth.route.js";
 import userRouter from "./routes/user.route.js";
 import companyRouter from "./routes/company.route.js";
-import jobRouter from "./routes/job.route.js";
+import jobRouter from "./routes/jobpost.route.js";
 import bookmarkRouter from "./routes/bookmark.route.js";
 import applicationRouter from "./routes/appication.route.js";
 import profileRouter from "./routes/profile.route.js";
@@ -19,6 +19,7 @@ import certificateRouter from "./routes/certificate.route.js";
 import skillRouter from "./routes/skill.route.js";
 import districtsRouter from "./routes/district.route.js";
 import languageRouter from "./routes/language.route.js";
+import publicRouter from "./routes/public.route.js";
 
 
 const app = express();
@@ -45,7 +46,7 @@ app.use("/api", resumeRouter);
 app.use("/api", certificateRouter);
 app.use("/api", skillRouter);
 app.use("/api", languageRouter);
-
+app.use("/api",publicRouter)
 
 
 app.use("/api", companyRouter);

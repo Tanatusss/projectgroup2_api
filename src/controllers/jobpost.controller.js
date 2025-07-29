@@ -1,5 +1,5 @@
 import prisma from "../config/prisma.js";
-import { createJob, updateJob } from "../services/job.service.js";
+import { createJob, updateJob } from "../services/jobpost.service.js";
 import { createError } from "../utils/createError.js";
 
 export const createJobPost = async (req, res, next) => {
@@ -42,7 +42,7 @@ export const createJobPost = async (req, res, next) => {
 
 export const updateJobPost =async (req,res,next)=> {
   try{
-     const {id} = req.params;
+     const {job_id} = req.params;
       const {
       title,
       jobDescription,

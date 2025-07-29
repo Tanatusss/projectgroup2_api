@@ -14,4 +14,3 @@ export const updateJob = async(job_id, updateData)=>{
   })
 }
 
-

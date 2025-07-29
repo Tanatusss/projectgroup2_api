@@ -1,6 +1,6 @@
 import express from "express"
 import { authCheck } from "../middlewares/authCheck.js"
-import { createJobPost, deleteJobPost, updateJobPost } from "../controllers/job.controller.js"
+import { createJobPost, deleteJobPost, updateJobPost } from "../controllers/jobpost.controller.js"
 
 const jobRouter = express.Router()
 
