@@ -1,7 +1,7 @@
 import { createError } from "../utils/createError.js";
 import bcrypt from 'bcryptjs';
 import prisma from '../config/prisma.js'
-import { createCompany, createUser, findCompany, findGoogleUser, findUser } from "../services/user.service.js";
+import { createUser, findUser } from "../services/user.service.js";
 import { signRefreshToken, signToken } from "../utils/jwtUtil.js";
 import crypto from "crypto";
 import nodemailer from "nodemailer";
@@ -10,7 +10,7 @@ import { getOldRefreshToken, newRefreshToken } from "../services/auth.service.js
 
 export const registerUser = async (req, res, next) => {
 	try {
-		const { email, password, confirmPassword, role } = req.body;
+		const { email, password, role } = req.body;
 		const user = await findUser(email)
 		if (user) {
 			createError(400, 'Email already exist!!!')
@@ -21,8 +21,8 @@ export const registerUser = async (req, res, next) => {
 			password: hashPassword,
 			role
 		}
-		const result = await createUser(newUser)
-		res.json({ message: `Register success`, result })
+		await createUser(newUser)
+		res.status(200).json({ message: `Register success` })
 	} catch (error) {
 		next(error)
 	}
@@ -42,8 +42,6 @@ export const login = async (req, res, next) => {
 		}
 		const accessToken = signToken(payload)
 		const refreshToken = signRefreshToken(payload)
-		console.log("accessToken", accessToken)
-		console.log("refreshToken", refreshToken)
 		await newRefreshToken(user.id, user.role, refreshToken)
 		res.cookie("refreshToken", refreshToken, {
 			httpOnly: true,
