@@ -19,6 +19,7 @@ model User {
         email        String             @unique
         password     String
         role         Roles              @default(USER)
+        company      Company[]
         favoriteJob  FavoriteJob[]
         bookmarkType BookmarkType[]
         profile      ProfileUser[]
@@ -35,19 +36,22 @@ model ResetToken {
 }
 
 model Company {
-        id           Int                   @id @default(autoincrement())
-        email        String                @unique
-        name         String?
-        password     String
-        role         Roles                 @default(COMPANY)
-        phone        String?               @unique
-        address      String?
-        logoimage    String?
-        link         String?
-        jobPost      JobPost[]
-        district     District?             @relation(fields: [districtId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-        districtId   Int?
-        refreshToken companyRefreshToken[]
+        id          Int       @id @default(autoincrement())
+        hrfirstname String?
+        hrlastname  String?
+        companyname String?
+        phone       String?   @unique
+        address     String?
+        logoimage   String?
+        image_bg    String?
+        link        String?
+        taxnumber   String?
+        billaddress String?
+        jobPost     JobPost[]
+        district    District? @relation(fields: [districtId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+        districtId  Int?
+        User        User?     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+        user_id     Int?
 }
 
 enum Gender {
@@ -83,7 +87,6 @@ model ProfileUser {
         expectsalary   Int?
         startdate      StartDate? //ENUM
         jobpreferences JobPreferences? //ENUM
-
         user_id Int
         user    User @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
@@ -190,6 +193,7 @@ model JobPost {
         address        String
         salary         Int
         jobRequirement String
+        typejob        String
         createAt       DateTime      @default(now())
         status         PostStatus    @default(ACTIVE)
         favoriteJob    FavoriteJob[]
@@ -249,17 +253,6 @@ model UserRefreshToken {
         token     String   @unique
         userId    Int
         user      User     @relation(fields: [userId], references: [id])
-        createdAt DateTime @default(now())
-        expiredAt DateTime
-        ipAddress String?
-        userAgent String? // device user use to login
-}
-
-model companyRefreshToken {
-        id        Int      @id @default(autoincrement())
-        token     String   @unique
-        companyId Int
-        company   Company  @relation(fields: [companyId], references: [id])
         createdAt DateTime @default(now())
         expiredAt DateTime
         ipAddress String?
