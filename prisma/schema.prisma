@@ -87,8 +87,8 @@ model ProfileUser {
         expectsalary   Int?
         startdate      StartDate? //ENUM
         jobpreferences JobPreferences? //ENUM
-        user_id Int
-        user    User @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+        user_id        Int
+        user           User            @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
         workExperience WorkExperience[]
         education      Education[]
@@ -250,7 +250,7 @@ model Prompt {
 
 model UserRefreshToken {
         id        Int      @id @default(autoincrement())
-        token     String   @unique
+        token     String
         userId    Int
         user      User     @relation(fields: [userId], references: [id])
         createdAt DateTime @default(now())
