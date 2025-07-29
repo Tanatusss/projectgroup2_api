@@ -1,28 +1,31 @@
 import prisma from "../src/config/prisma.js";
-import { companyData } from "./seeds/companies.js";
+import { companyProfileData } from "./seeds/companies.js";
 import { jobData } from "./seeds/jobs.js";
-import { provinces } from "./seeds/districts.js";
+import { districts } from "./seeds/districts.js";
 import { adminData, userData } from "./seeds/usersAndAdmins.js";
+import { education } from "./seeds/education.js";
+
+// import { languages } from "./seeds/languages.js"; // Skip for now - requires profile_id
 //npm run seed
 async function seedDB() {
   try {
     console.log("Starting database seeding...");
 
-    // Seed provinces first (foreign key reference)
-    console.log("Seeding provinces...");
-    await prisma.province.createMany({
-      data: provinces,
+    // Seed districts first (foreign key reference)
+    console.log("Seeding districts...");
+    await prisma.district.createMany({
+      data: districts,
       skipDuplicates: true,
     });
-    console.log(`Seeded ${provinces.length} provinces`);
+    console.log(`Seeded ${districts.length} districts`);
 
     // Seed companies
     console.log("Seeding companies...");
     await prisma.company.createMany({
-      data: companyData,
+      data: companyProfileData,
       skipDuplicates: true,
     });
-    console.log(`Seeded ${companyData.length} companies`);
+    console.log(`Seeded ${companyProfileData.length} companies`);
 
     // Seed jobs
     console.log("Seeding jobs...");
@@ -47,6 +50,15 @@ async function seedDB() {
       skipDuplicates: true,
     });
     console.log(`Seeded ${adminData.length} admins`);
+
+    //seed education
+    console.log("Seeding education...");
+    await prisma.education.deleteMany(); // Clear existing education data
+    await prisma.education.createMany({
+      data: education,
+      skipDuplicates: true,
+    });
+    console.log(`Seeded ${education.length} education records`);
 
     console.log("Database seeding completed successfully!");
   } catch (error) {
