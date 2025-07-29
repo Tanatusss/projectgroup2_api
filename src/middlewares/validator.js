@@ -1,6 +1,6 @@
 import { object, ref, string, number } from "yup"
-import { Roles } from "../generated/prisma"
 
+const Roles = ["USER", "ADMIN", "COMPANY"]
 
 export const loginSchema = object({
 	email: string(),
