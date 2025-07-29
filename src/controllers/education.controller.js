@@ -7,7 +7,6 @@ import {
 } from "../services/education.service.js";
 
 // Get all education records for a specific profile
-
 export const listAllEducation = async (req, res, next) => {
   try {
     const profileId = parseInt(req.params.profile_id);
@@ -40,11 +39,22 @@ export const createEducation = async (req, res, next) => {
     const profileId = parseInt(req.params.profile_id);
     const eduData = req.body;
 
-    // Validate input data
-    if (!eduData.institution || !eduData.degree || !eduData.graduationYear) {
+    // Validate input data - ชื่อฟิลด์ต้องตรงกับ schema
+    if (
+      !eduData.institute ||
+      !eduData.qualification ||
+      !eduData.graduationYear
+    ) {
       return res
         .status(400)
         .json({ success: false, message: "Missing required fields" });
+    }
+
+    // ตรวจสอบว่า graduationYear เป็นตัวเลข
+    if (isNaN(Number(eduData.graduationYear))) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Graduation year must be a number" });
     }
 
     const newEducation = await createEducationByProfileId(profileId, eduData);
@@ -54,17 +64,27 @@ export const createEducation = async (req, res, next) => {
   }
 };
 
-//update education record by education ID
+// Update education record by education ID
 export const updateEducation = async (req, res, next) => {
   try {
     const id = parseInt(req.params.id);
     const eduData = req.body;
 
-    // Validate input data
-    if (!eduData.institution || !eduData.degree || !eduData.graduationYear) {
+    // ตรวจสอบความถูกต้องของข้อมูล (เฉพาะฟิลด์ที่ส่งมา)
+    if (
+      (eduData.institute !== undefined && !eduData.institute.trim()) ||
+      (eduData.qualification !== undefined && !eduData.qualification.trim()) ||
+      (eduData.graduationYear !== undefined &&
+        isNaN(Number(eduData.graduationYear)))
+    ) {
       return res
         .status(400)
-        .json({ success: false, message: "Missing required fields" });
+        .json({ success: false, message: "Invalid field values" });
+    }
+
+    // แปลง graduationYear เป็น number ถ้ามีการส่งมา
+    if (eduData.graduationYear !== undefined) {
+      eduData.graduationYear = Number(eduData.graduationYear);
     }
 
     const updatedEducation = await updatePartialEducationById(id, eduData);
@@ -73,6 +93,7 @@ export const updateEducation = async (req, res, next) => {
     next(error);
   }
 };
+
 // Delete education record by ID
 export const deleteEducation = async (req, res, next) => {
   try {

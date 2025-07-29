@@ -30,6 +30,34 @@ export const userData = [
   },
 ];
 
+export const companyData = [
+  {
+    email: "company1@mail.com",
+    password: hashedPassword,
+    role: "COMPANY",
+  },
+  {
+    email: "company2@mail.com",
+    password: hashedPassword,
+    role: "COMPANY",
+  },
+  {
+    email: "company3@mail.com",
+    password: hashedPassword,
+    role: "COMPANY",
+  },
+  {
+    email: "company4@mail.com",
+    password: hashedPassword,
+    role: "COMPANY",
+  },
+  {
+    email: "company5@mail.com",
+    password: hashedPassword,
+    role: "COMPANY",
+  },
+];
+
 export const adminData = [
   {
     email: "admin1@mail.com",
