@@ -90,3 +90,28 @@ export const getCompanyById = async (req, res, next) => {
     next(error);
   }
 }
+
+
+export const getAllJobpostsByTypeJob = async(req,res,next)=>{
+  try{
+    const {typejob} = req.params;
+    if (!typejob) {
+      return createError(400, "Missing required fields");
+    }
+    const jobs = await prisma.jobPost.findMany({
+      where: {
+        typejob: typejob,
+        // status: "ACTIVE"
+      },
+      orderBy:{
+        createAt: "desc"
+      }
+    })
+    res.json({
+      msg: "Get all job posts by type job success",
+      jobs
+    })
+  }catch(error){
+    next(error);
+  }
+}
