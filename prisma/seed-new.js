@@ -2,8 +2,9 @@ import prisma from "../src/config/prisma.js";
 import { companyProfileData } from "./seeds/companies.js";
 import { jobData } from "./seeds/jobs.js";
 import { districts } from "./seeds/districts.js";
-import { adminData, userData } from "./seeds/usersAndAdmins.js";
-import { education } from "./seeds/education.js";
+import { adminData, companyData, userData } from "./seeds/usersAndAdmins.js";
+import { educationData } from "./seeds/education.js";
+import { profileData } from "./seeds/profiles.js";
 
 // import { languages } from "./seeds/languages.js"; // Skip for now - requires profile_id
 //npm run seed
@@ -17,23 +18,6 @@ async function seedDB() {
       data: districts,
       skipDuplicates: true,
     });
-    console.log(`Seeded ${districts.length} districts`);
-
-    // Seed companies
-    console.log("Seeding companies...");
-    await prisma.company.createMany({
-      data: companyProfileData,
-      skipDuplicates: true,
-    });
-    console.log(`Seeded ${companyProfileData.length} companies`);
-
-    // Seed jobs
-    console.log("Seeding jobs...");
-    await prisma.jobPost.createMany({
-      data: jobData,
-      skipDuplicates: true,
-    });
-    console.log(`Seeded ${jobData.length} job posts`);
 
     //seed users
     console.log("Seeding users...");
@@ -43,6 +27,13 @@ async function seedDB() {
     });
     console.log(`Seeded ${userData.length} users`);
 
+    //seed hr
+    await prisma.user.createMany({
+      data: companyData,
+      skipDuplicates: true,
+    });
+    console.log(`Seeded ${companyData.length} HR users`);
+
     //seed admins
     console.log("Seeding admins...");
     await prisma.user.createMany({
@@ -51,14 +42,38 @@ async function seedDB() {
     });
     console.log(`Seeded ${adminData.length} admins`);
 
-    //seed education
-    console.log("Seeding education...");
-    await prisma.education.deleteMany(); // Clear existing education data
-    await prisma.education.createMany({
-      data: education,
+    // Seed companies
+    console.log("Seeding companies...");
+    await prisma.company.createMany({
+      data: companyProfileData,
       skipDuplicates: true,
     });
-    console.log(`Seeded ${education.length} education records`);
+    console.log(`Seeded ${companyProfileData.length} companies`);
+
+    // Seed job posts
+    console.log("Seeding job posts...");
+    await prisma.jobPost.createMany({
+      data: jobData,
+      skipDuplicates: true,
+    });
+    console.log(`Seeded ${jobData.length} job posts`);
+
+    // Seed profiles (must be done before education)
+    console.log("Seeding user profiles...");
+    await prisma.profileUser.createMany({
+      data: profileData,
+      skipDuplicates: true,
+    });
+    console.log(`Seeded ${profileData.length} user profiles`);
+
+    //seed education data
+    console.log("Seeding education data...");
+
+    await prisma.education.createMany({
+      data: educationData,
+      skipDuplicates: true,
+    });
+    console.log(`Seeded ${educationData.length} education records`);
 
     console.log("Database seeding completed successfully!");
   } catch (error) {
