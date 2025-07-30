@@ -143,6 +143,8 @@ model Education {
 
         profile_id  Int
         profileUser ProfileUser? @relation(fields: [profile_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+        @@map("education")
 }
 
 model WorkExperience {

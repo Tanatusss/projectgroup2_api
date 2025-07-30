@@ -4,7 +4,7 @@
  * profile_id values correspond to the ProfileUser records
  */
 
-export const education = [
+export const educationData = [
   // Profile 1 - Alex Thompson (Full Stack Developer)
   {
     profile_id: 1,
