@@ -83,6 +83,7 @@ model ProfileUser {
         description    String?
         phone          String?         @unique
         district       String?
+        classsfication String?
         gender         Gender? //ENUM
         expectsalary   Int?
         startdate      StartDate? //ENUM
