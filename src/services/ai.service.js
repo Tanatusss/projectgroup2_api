@@ -24,6 +24,12 @@ export const serviceKeywordsSearch = async (keywords) => {
 			],
 			AND: { status: "ACTIVE" }
 		},
+		include: {
+			company: {
+				select: { companyname: true, logoimage: true },
+
+			}
+		}
 	})
 	console.log("result: ", result)
 	return result

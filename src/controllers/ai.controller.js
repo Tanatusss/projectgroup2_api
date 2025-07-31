@@ -5,7 +5,7 @@ import { createError } from "../utils/createError.js"
 import { addToPromptDb, getPromptDb, serviceKeywordsSearch } from "../services/ai.service.js"
 import { rateSimilarity } from "../ai_utils/cosineSimilarity.js"
 
-
+// TODO: Need to remove console.log later
 export const aiSearch = async (req, res, next) => {
 	const acceptable_similarity = 0.8500
 	try {
