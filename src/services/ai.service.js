@@ -2,38 +2,35 @@ import prisma from "../config/prisma.js"
 
 export const serviceKeywordsSearch = async (keywords) => {
 	const {
-		age,
 		education,
 		expectedSalary,
 		preferJobField,
 		preferJobLocation,
 		preferJobTitle,
 		skills,
-		workingExperience
 	} = keywords
 	const result = await prisma.jobPost.findMany({
 		where: {
-			title: { search: `*${preferJobTitle}*` },
-			jobDescription: {
-				search: `*manage*`
-			},
-			salary: { gte: expectedSalary },
-			address: {
-				search: `*${preferJobLocation}*`
-			},
-			jobRequirement: {
-				search: `*${skills}*`
-			},
-			status: "ACTIVE"
-		}
+			OR: [
+				{ title: { contains: preferJobTitle } },
+				{ salary: { gte: expectedSalary } },
+				{ address: { contains: preferJobLocation } },
+				{ jobDescription: { search: `*${preferJobTitle}*` } },
+				{ jobDescription: { contains: `*${preferJobLocation}*` } },
+				{ jobDescription: { search: `*${preferJobField}*` } },
+				{ jobDescription: { search: `*${skills}*` } },
+				{ jobRequirement: { search: `*${education}*` } },
+				{ jobRequirement: { contains: `*${skills}*` } },
+			],
+			AND: { status: "ACTIVE" }
+		},
 	})
+	console.log("result: ", result)
 	return result
 }
 
-export const getPromptDbByCategory = async (category) => {
-	const result = await prisma.prompt.findMany({
-		where: { category }
-	})
+export const getPromptDb = async () => {
+	const result = await prisma.prompt.findMany({})
 	return result
 }
 
@@ -41,4 +38,5 @@ export const addToPromptDb = async (data) => {
 	const result = prisma.prompt.create({
 		data
 	})
+	return result
 }

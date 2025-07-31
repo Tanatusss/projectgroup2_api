@@ -25,5 +25,8 @@ export async function rateSimilarity(base, textArr) {
 	console.log(index)
 	console.log(similarityList)
 	console.log(similarityList[index])
+	if (index < 0) {
+		return { similarity: 0 }
+	}
 	return similarityList[index]
 }

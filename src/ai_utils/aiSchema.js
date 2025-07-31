@@ -1,7 +1,6 @@
 import { z } from "zod";
 
 export const userSchema = z.object({
-	age: z.optional(z.number()).describe("age of person in year"),
 	skills: z.optional(z.string()).describe("skill of user that might relate to job if user have multiple return comma separate"),
 	education: z.optional(z.string()).describe("education background of user"),
 	workingExperience: z.optional(z.number()).describe("amout of experience user have in year"),

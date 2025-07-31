@@ -30,7 +30,6 @@ export const registerUser = async (req, res, next) => {
 				}
 			});
 		}
-
 		if (result.role === "COMPANY") {
 			await prisma.company.create({
 				data: {
@@ -38,10 +37,6 @@ export const registerUser = async (req, res, next) => {
 				}
 			});
 		}
-
-
-
-
 		res.json({ message: `Register success`, result })
 	} catch (error) {
 		next(error)
