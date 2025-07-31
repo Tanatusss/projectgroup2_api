@@ -6,7 +6,7 @@ export const profileData = [
     address: "123 Main St, Bangkok",
     description: "A passionate software developer with 5 years of experience.",
     phone: "0811234567",
-    district: "Phra Nakhon",
+    districtId: 1, // Phra Nakhon (was 101)
     gender: "MALE",
     expectsalary: 60000,
     startdate: "NOW",
@@ -16,10 +16,10 @@ export const profileData = [
     user_id: 2, // user2@mail.com
     firstname: "Jane",
     lastname: "Smith",
-    address: "456 Oak Ave, Chiang Mai",
+    address: "456 Oak Ave, Dusit, Bangkok 10300",
     description: "Creative graphic designer looking for new opportunities.",
     phone: "0822345678",
-    district: "Dusit",
+    districtId: 2, // Dusit (was 102)
     gender: "FEMALE",
     expectsalary: 45000,
     startdate: "FOURWEEK",
@@ -29,11 +29,11 @@ export const profileData = [
     user_id: 3, // user3@mail.com
     firstname: "Peter",
     lastname: "Jones",
-    address: "789 Pine Ln, Phuket",
+    address: "789 Pine Ln, Nong Chok, Bangkok 10530",
     description:
       "Data analyst with a knack for finding insights in complex datasets.",
     phone: "0833456789",
-    district: "Nong Chok",
+    districtId: 3, // Nong Chok (was 103)
     gender: "MALE",
     expectsalary: 75000,
     startdate: "TWOWEEK",
@@ -43,10 +43,10 @@ export const profileData = [
     user_id: 4, // user4@mail.com
     firstname: "Mary",
     lastname: "Williams",
-    address: "101 Maple Dr, Khon Kaen",
+    address: "101 Maple Dr, Bang Rak, Bangkok 10500",
     description: "Marketing specialist with a focus on digital campaigns.",
     phone: "0844567890",
-    district: "Bang Rak",
+    districtId: 4, // Bang Rak (was 104)
     gender: "FEMALE",
     expectsalary: 50000,
     startdate: "EIGHTWEEK",
@@ -56,11 +56,11 @@ export const profileData = [
     user_id: 5, // user5@mail.com
     firstname: "David",
     lastname: "Brown",
-    address: "212 Birch Rd, Chonburi",
+    address: "212 Birch Rd, Bang Khen, Bangkok 10220",
     description:
       "Recent graduate with a degree in computer science, eager to learn.",
     phone: "0855678901",
-    district: "Bang Khen",
+    districtId: 5, // Bang Khen (was 105)
     gender: "MALE",
     expectsalary: 30000,
     startdate: "NOW",
@@ -76,7 +76,7 @@ export const profileData = [
     description:
       "Full Stack Developer with 6 years of experience. Expert in React, Node.js, TypeScript and MongoDB. Experienced in working with Agile teams and international projects.",
     phone: "0891234567",
-    district: "Phra Khanong",
+    districtId: 9, // Phra Khanong (was 109)
     gender: "MALE",
     expectsalary: 75000,
     startdate: "TWOWEEK",
@@ -91,7 +91,7 @@ export const profileData = [
     description:
       "UX/UI Designer with 2 years of experience. Skilled in Figma, Adobe XD, and Sketch. Focus on creating user-friendly and aesthetically pleasing designs. Have worked with several leading brands.",
     phone: "0812345678",
-    district: "Ladprao",
+    districtId: 38, // Lat Phrao (was 138 - closest match to Ladprao)
     gender: "FEMALE",
     expectsalary: 45000,
     startdate: "NOW",
@@ -107,7 +107,7 @@ export const profileData = [
     description:
       "Digital Marketer specializing in Facebook Ads, Google Ads, and SEO. Experienced with E-commerce and startup businesses. Currently pursuing a Master's degree in Digital Marketing.",
     phone: "0823456789",
-    district: "Chatuchak",
+    districtId: 30, // Chatuchak (was 130)
     gender: "MALE",
     expectsalary: 30000,
     startdate: "NOW",
@@ -122,7 +122,7 @@ export const profileData = [
     description:
       "Data Analyst with 4 years of experience. Proficient in SQL, Python, R, and Power BI. Knowledge of Machine Learning and Statistical Analysis. Able to present complex data in an understandable format.",
     phone: "0834567890",
-    district: "Watthana",
+    districtId: 39, // Watthana (was 139)
     gender: "FEMALE",
     expectsalary: 60000,
     startdate: "FOURWEEK",
@@ -137,7 +137,7 @@ export const profileData = [
     description:
       "Executive Assistant with 8 years of experience working with senior executives. Excellent communication and management skills. Fluent in English, efficient in document management, coordination, and meeting planning.",
     phone: "0845678901",
-    district: "Bang Kapi",
+    districtId: 6, // Bang Kapi (was 106)
     gender: "MALE",
     expectsalary: 45000,
     startdate: "TWOWEEK",
@@ -152,7 +152,7 @@ export const profileData = [
     description:
       "Recent Business Administration graduate interested in marketing and sales. Worked on projects with leading companies during internships. Skilled in Microsoft Office and Adobe Photoshop.",
     phone: "0856789012",
-    district: "Samphanthawong",
+    districtId: 13, // Samphanthawong (was 113)
     gender: "FEMALE",
     expectsalary: 18000,
     startdate: "NOW",
@@ -168,7 +168,7 @@ export const profileData = [
     description:
       "Senior Accountant with 10 years of experience. Specialized in tax planning, auditing, and financial reporting. Holds CPA license and is proficient in various accounting software applications.",
     phone: "0867890123",
-    district: "Bang Khen",
+    districtId: 5, // Bang Khen (was 105)
     gender: "MALE",
     expectsalary: 85000,
     startdate: "EIGHTWEEK",
@@ -184,7 +184,7 @@ export const profileData = [
     description:
       "IT Project Manager with 7 years of experience. Expert in managing information technology projects. PMP certified with experience leading large software development teams. Knowledgeable in Agile, Scrum, and Kanban methodologies.",
     phone: "0878901234",
-    district: "Sathon",
+    districtId: 28, // Sathon (was 128)
     gender: "FEMALE",
     expectsalary: 95000,
     startdate: "FOURWEEK",
@@ -200,7 +200,7 @@ export const profileData = [
     description:
       "Thai-Fusion Chef with 6 years of experience working in Michelin-starred restaurants in Japan and Singapore. Expert in menu development and kitchen management. Fluent in English and Japanese.",
     phone: "0889012345",
-    district: "Watthana",
+    districtId: 39, // Watthana (was 139)
     gender: "MALE",
     expectsalary: 70000,
     startdate: "EIGHTWEEK",
@@ -215,7 +215,7 @@ export const profileData = [
     description:
       "3 years of customer service experience in coffee shops, hotels, and call centers. Passionate about service, effective communicator, flexible working hours. Positive attitude and enjoys teamwork.",
     phone: "0890123456",
-    district: "Ladprao",
+    districtId: 38, // Lat Phrao (was 138 - closest match to Ladprao)
     gender: "FEMALE",
     expectsalary: 25000,
     startdate: "NOW",

@@ -82,8 +82,9 @@ model ProfileUser {
         address        String?
         description    String?
         phone          String?         @unique
-        district       String?
         classsfication String?
+        districtId     Int?
+        district       District?       @relation(fields: [districtId], references: [id])
         gender         Gender? //ENUM
         expectsalary   Int?
         startdate      StartDate? //ENUM
@@ -238,8 +239,9 @@ model District {
         updatedAt      DateTime @updatedAt
 
         //relations
-        jobPost   JobPost[]
-        companies Company[]
+        jobPost      JobPost[]
+        companies    Company[]
+        profileUsers ProfileUser[]
 
         @@map("districts")
 }

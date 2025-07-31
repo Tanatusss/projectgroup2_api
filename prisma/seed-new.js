@@ -60,11 +60,11 @@ async function seedDB() {
 
     // Seed profiles (must be done before education)
     console.log("Seeding user profiles...");
-    await prisma.profileUser.createMany({
+    const profileResult = await prisma.profileUser.createMany({
       data: profileData,
       skipDuplicates: true,
     });
-    console.log(`Seeded ${profileData.length} user profiles`);
+    console.log(`Actually created ${profileResult.count} user profiles (attempted ${profileData.length})`);
 
     //seed education data
     console.log("Seeding education data...");
