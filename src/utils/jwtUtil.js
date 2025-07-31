@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken"
 
 export function signToken(payload) {
-	const result = jwt.sign(payload, process.env.JWT_SECRET, { algorithm: "HS256", expiresIn: "30d" })
+	const result = jwt.sign(payload, process.env.JWT_SECRET, { algorithm: "HS256", expiresIn: "30s" })
 	return result
 }
 

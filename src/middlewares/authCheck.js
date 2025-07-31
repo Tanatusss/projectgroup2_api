@@ -16,6 +16,7 @@ export function authCheck(req, res, next) {
         return createError(401, "unauthorized");
       }
       req.user = decoded;
+      req.company = decoded;
       next();
     });
   } catch (err) {

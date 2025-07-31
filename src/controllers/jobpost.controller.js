@@ -4,8 +4,8 @@ import { createError } from "../utils/createError.js";
 
 export const createJobPost = async (req, res, next) => {
   try {
-    const  {id}  = req.company;
-    console.log("kuay",id)
+    const  {id} = req.company
+    console.log("kuay",req.company)
     const {
       title,
       jobDescription,
@@ -154,3 +154,4 @@ export const getJobById = async (req, res, next) => {
     next(error);
   }
 }
+

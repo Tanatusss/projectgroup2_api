@@ -83,6 +83,7 @@ model ProfileUser {
         description    String?
         phone          String?         @unique
         district       String?
+        classsfication String?
         gender         Gender? //ENUM
         expectsalary   Int?
         startdate      StartDate? //ENUM
@@ -142,6 +143,8 @@ model Education {
 
         profile_id  Int
         profileUser ProfileUser? @relation(fields: [profile_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+        @@map("education")
 }
 
 model WorkExperience {
@@ -160,6 +163,10 @@ model BookmarkType {
         id      Int   @id @default(autoincrement())
         user    User? @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
         user_id Int?
+        typejob String
+        createdAt DateTime @default(now())
+
+        @@unique([user_id, typejob])
 }
 
 model FavoriteJob {
