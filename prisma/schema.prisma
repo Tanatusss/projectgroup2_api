@@ -164,6 +164,10 @@ model BookmarkType {
         id      Int   @id @default(autoincrement())
         user    User? @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
         user_id Int?
+        typejob String
+        createdAt DateTime @default(now())
+
+        @@unique([user_id, typejob])
 }
 
 model FavoriteJob {
