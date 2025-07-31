@@ -31,7 +31,6 @@ export const aiSearch = async (req, res, next) => {
 			const newKeywords = JSON.stringify(aiResponse)
 			const data = { text, keywords: newKeywords }
 			const result = await addToPromptDb(data)
-			console.log(result)
 		}
 		console.log("keywords: ", keywords)
 		const response = await serviceKeywordsSearch(keywords)

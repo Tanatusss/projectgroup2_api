@@ -1,6 +1,5 @@
 import prisma from "../config/prisma.js"
 
-// TODO: Need to remove console.log later
 export const serviceKeywordsSearch = async (keywords) => {
 	const {
 		education,
@@ -16,12 +15,12 @@ export const serviceKeywordsSearch = async (keywords) => {
 				{ title: { contains: preferJobTitle } },
 				{ salary: { gte: expectedSalary } },
 				{ address: { contains: preferJobLocation } },
-				{ jobDescription: { search: `*${preferJobTitle}*` } },
-				{ jobDescription: { contains: `*${preferJobLocation}*` } },
-				{ jobDescription: { search: `*${preferJobField}*` } },
-				{ jobDescription: { search: `*${skills}*` } },
-				{ jobRequirement: { search: `*${education}*` } },
-				{ jobRequirement: { contains: `*${skills}*` } },
+				{ jobDescription: { contains: preferJobTitle } },
+				{ jobDescription: { contains: preferJobLocation } },
+				{ jobDescription: { contains: preferJobField } },
+				{ jobDescription: { contains: skills } },
+				{ jobRequirement: { contains: education } },
+				{ jobRequirement: { contains: skills } },
 			],
 			AND: { status: "ACTIVE" }
 		},
@@ -31,15 +30,7 @@ export const serviceKeywordsSearch = async (keywords) => {
 
 			}
 		},
-		orderBy: {
-			_relevance: {
-				fields: ["jobDescription"],
-				search: `${preferJobTitle}`,
-				sort: "desc"
-			}
-		}
 	})
-	console.log("result: ", result)
 	return result
 }
 
