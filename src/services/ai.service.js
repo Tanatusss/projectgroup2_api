@@ -1,5 +1,6 @@
 import prisma from "../config/prisma.js"
 
+// TODO: Need to remove console.log later
 export const serviceKeywordsSearch = async (keywords) => {
 	const {
 		education,
@@ -28,6 +29,13 @@ export const serviceKeywordsSearch = async (keywords) => {
 			company: {
 				select: { companyname: true, logoimage: true },
 
+			}
+		},
+		orderBy: {
+			_relevance: {
+				fields: ["jobDescription"],
+				search: `${preferJobTitle}`,
+				sort: "desc"
 			}
 		}
 	})
