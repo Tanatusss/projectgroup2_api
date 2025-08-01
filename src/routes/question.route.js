@@ -1,15 +1,16 @@
 import express from 'express'
 import { authCheck } from '../middlewares/authCheck.js'
+import * as questionController from "../controllers/question.controller.js"
 
 
-const router = express.Router()
+const questionRouter = express.Router()
 
 // POST /companyanswers/expected
-router.post('/companyanswers/expected', authCheck, setExpectedAnswers)
-router.get('/companyanswers/:jobpostId/expected', authCheck, getExpectedAnswers)
+questionRouter.post('/companyanswers/expected', authCheck, questionController.setExpectedAnswers)
+questionRouter.get('/companyanswers/:jobpostId/expected', authCheck, questionController.getExpectedAnswers)
 
-router.post('/jobapplies/:jobApplyId/answers', authCheck, submitAnswers)
-router.get('/jobapplies/:jobApplyId/answers', authCheck, getAnswers)
+questionRouter.post('/jobapplies/:jobApplyId/answers', authCheck, questionController.submitAnswers)
+questionRouter.get('/jobapplies/:jobApplyId/answers', authCheck, questionController.getAnswers)
 
-router.get('/jobposts/:jobpostId/questions', getQuestionsByJobpost)
-export default router
+questionRouter.get('/jobposts/:jobpostId/questions', authCheck, questionController.getQuestionsByJobpost)
+export default questionRouter
