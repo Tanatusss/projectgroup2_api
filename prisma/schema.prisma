@@ -185,6 +185,8 @@ model JobApply {
         profile    ProfileUser @relation(fields: [profile_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
         job        JobPost     @relation(fields: [job_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
         applyAt    DateTime    @default(now())
+
+        userAnswer UserAnswer[]
 }
 
 enum PostStatus {
@@ -207,8 +209,10 @@ model JobPost {
         favoriteJob    FavoriteJob[]
         jobApply       JobApply[]
         payment        Payment[]
+        companyAnswer CompanyAnswer[]
         district       District?     @relation(fields: [districtId], references: [id])
         districtId     Int?
+
 
         @@fulltext([title])
         @@fulltext([address])
@@ -266,4 +270,60 @@ model UserRefreshToken {
         expiredAt DateTime
         ipAddress String?
         userAgent String? // device user use to login
+}
+
+model QuestionData {
+  id              Int              @id @default(autoincrement())
+  typejob         String           // ใช้กับงานประเภทใด
+  type            String           // "single" | "multiple"
+  question        String
+
+  answerOptions   AnswerData[]     // คำตอบที่เป็นไปได้
+  companyAnswers  CompanyAnswer[]  @relation("QuestionToCompanyAnswer")
+  userAnswers     UserAnswer[]     // คำตอบที่ user ตอบ
+}
+
+model AnswerData {
+  id               Int              @id @default(autoincrement())
+  questionId       Int
+  text             String
+
+  question         QuestionData     @relation(fields: [questionId], references: [id])
+  companyAnswers   CompanyAnswer[]  @relation("AnswerToCompanyAnswer")
+  userAnswerOptions UserAnswerOption[]
+}
+
+model CompanyAnswer {
+  id              Int          @id @default(autoincrement())
+  jobpostId       Int
+  questionId      Int
+  answerOptionId  Int
+
+  jobpost         JobPost       @relation(fields: [jobpostId], references: [id])
+  questionData    QuestionData  @relation("QuestionToCompanyAnswer", fields: [questionId], references: [id])
+  answerData      AnswerData    @relation("AnswerToCompanyAnswer", fields: [answerOptionId], references: [id])
+
+  @@unique([jobpostId, questionId, answerOptionId]) // ป้องกันซ้ำ
+}
+
+model UserAnswer {
+  id              Int              @id @default(autoincrement())
+  jobApplyId      Int
+  questionId      Int
+
+  jobApply        JobApply         @relation(fields: [jobApplyId], references: [id])
+  question        QuestionData     @relation(fields: [questionId], references: [id])
+
+  selectedOptions UserAnswerOption[]
+}
+
+model UserAnswerOption {
+  id              Int         @id @default(autoincrement())
+  userAnswerId    Int
+  answerOptionId  Int
+
+  userAnswer      UserAnswer  @relation(fields: [userAnswerId], references: [id])
+  answerOption    AnswerData  @relation(fields: [answerOptionId], references: [id])
+
+  @@unique([userAnswerId, answerOptionId]) // ป้องกันเลือกซ้ำ
 }
