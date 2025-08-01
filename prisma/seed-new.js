@@ -5,6 +5,7 @@ import { districts } from "./seeds/districts.js";
 import { adminData, companyData, userData } from "./seeds/usersAndAdmins.js";
 import { educationData } from "./seeds/education.js";
 import { profileData } from "./seeds/profiles.js";
+import { workExperienceData } from "./seeds/workExperience.js";
 
 // import { languages } from "./seeds/languages.js"; // Skip for now - requires profile_id
 //npm run seed
@@ -64,22 +65,32 @@ async function seedDB() {
       data: profileData,
       skipDuplicates: true,
     });
-    console.log(`Actually created ${profileResult.count} user profiles (attempted ${profileData.length})`);
+    console.log(
+      `Actually created ${profileResult.count} user profiles (attempted ${profileData.length})`
+    );
 
     //seed education data
     console.log("Seeding education data...");
 
-    await prisma.education.createMany({
+    const educationResult = await prisma.education.createMany({
       data: educationData,
       skipDuplicates: true,
     });
-    console.log(`Seeded ${educationData.length} education records`);
+    console.log(`Seeded ${educationResult.count} education records`);
 
     console.log("Database seeding completed successfully!");
   } catch (error) {
     console.error("Error during seeding:", error);
     throw error;
   }
+
+  // Seed work experience data
+  console.log("Seeding work experience data...");
+  const experienceResult = await prisma.workExperience.createMany({
+    data: workExperienceData,
+    skipDuplicates: true,
+  });
+  console.log(`Seeded ${experienceResult.count} work experience records`);
 }
 
 seedDB()
