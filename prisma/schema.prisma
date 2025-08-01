@@ -82,6 +82,7 @@ model ProfileUser {
         description    String?
         phone          String?         @unique
         classsfication String?
+        typejob        String?
         gender         Gender? //ENUM
         expectsalary   Int?
         startdate      StartDate? //ENUM
@@ -171,6 +172,7 @@ model FavoriteJob {
         id      Int     @id @default(autoincrement())
         user_id Int
         job_id  Int
+        apply_at DateTime @default(now())
         user    User    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
         job     JobPost @relation(fields: [job_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
@@ -191,6 +193,12 @@ enum PostStatus {
         DRAFT
 }
 
+enum Package {
+        LITE
+        BASIC
+        PREMIUM
+}
+
 model JobPost {
         id                 Int                  @id @default(autoincrement())
         company_id         Int
@@ -204,6 +212,7 @@ model JobPost {
         createAt           DateTime             @default(now())
         expireAt           DateTime?
         status             PostStatus           @default(ACTIVE)
+        package            Package              @default(LITE)
         favoriteJob        FavoriteJob[]
         payment            Payment[]
         companyAnswer      CompanyAnswer[]

@@ -15,7 +15,6 @@ export const companyProfileData = [
     address: "123/45 Sukhumvit Road, Watthana, Bangkok 10110",
     taxnumber: "0105563001234",
     billaddress: "123/45 Sukhumvit Road, Watthana, Bangkok 10110",
-    districtId: 39, // Watthana (districtCode: 139)
   },
   {
     user_id: 17,
@@ -26,7 +25,6 @@ export const companyProfileData = [
     address: "45/6 Silom Complex, Bang Rak, Bangkok 10500",
     taxnumber: "0105564002345",
     billaddress: "45/6 Silom Complex, Bang Rak, Bangkok 10500",
-    districtId: 4, // Bang Rak (districtCode: 104)
   },
   {
     user_id: 18,
@@ -37,7 +35,7 @@ export const companyProfileData = [
     address: "789 New Petchburi Road, Ratchathewi, Bangkok 10400",
     taxnumber: "0105523003456",
     billaddress: "789 New Petchburi Road, Ratchathewi, Bangkok 10400",
-    districtId: 37, // Ratchathewi (districtCode: 137)
+   
   },
   {
     user_id: 19,
@@ -48,7 +46,7 @@ export const companyProfileData = [
     address: "313 CP Tower, Silom Road, Bang Rak, Bangkok 10500",
     taxnumber: "0107542000011",
     billaddress: "313 CP Tower, Silom Road, Bang Rak, Bangkok 10500",
-    districtId: 4, // Bang Rak (districtCode: 104)
+   
   },
   {
     user_id: 20,
@@ -59,7 +57,7 @@ export const companyProfileData = [
     address: "1550 Thanon Phaya Thai, Ratchathewi, Bangkok 10400",
     taxnumber: "0105546113036",
     billaddress: "1550 Thanon Phaya Thai, Ratchathewi, Bangkok 10400",
-    districtId: 37, // Ratchathewi (districtCode: 137)
+
   },
   {
     user_id: 21,
@@ -71,7 +69,7 @@ export const companyProfileData = [
     taxnumber: "0107536000081",
     billaddress:
       "18 True Tower, Ratchadaphisek Road, Huai Khwang, Bangkok 10310",
-    districtId: 17, // Huai Khwang (districtCode: 117)
+    
   },
   {
     user_id: 22,
@@ -82,7 +80,7 @@ export const companyProfileData = [
     address: "306 Silom Road, Bang Rak, Bangkok 10500",
     taxnumber: "0105532058015",
     billaddress: "306 Silom Road, Bang Rak, Bangkok 10500",
-    districtId: 4, // Bang Rak (districtCode: 104)
+   
   },
   {
     user_id: 23,
@@ -94,7 +92,7 @@ export const companyProfileData = [
     taxnumber: "0107536000315",
     billaddress:
       "1 Soi Rat Burana 27, Rat Burana Road, Rat Burana, Bangkok 10140",
-    districtId: 24, // Rat Burana (districtCode: 124)
+
   },
   {
     user_id: 24,
@@ -105,7 +103,7 @@ export const companyProfileData = [
     address: "555 Vibhavadi Rangsit Road, Chatuchak, Bangkok 10900",
     taxnumber: "0107544000108",
     billaddress: "555 Vibhavadi Rangsit Road, Chatuchak, Bangkok 10900",
-    districtId: 30, // Chatuchak (districtCode: 130)
+
   },
   {
     user_id: 25,
@@ -116,7 +114,6 @@ export const companyProfileData = [
     address: "689 Bhiraj Tower, Sukhumvit Road, Khlong Toei, Bangkok 10110",
     taxnumber: "0105558193584",
     billaddress: "689 Bhiraj Tower, Sukhumvit Road, Khlong Toei, Bangkok 10110",
-    districtId: 33, // Khlong Toei (districtCode: 133)
   },
   {
     user_id: 26,
@@ -129,7 +126,7 @@ export const companyProfileData = [
     taxnumber: "0105554088111",
     billaddress:
       "175 Sathorn City Tower, South Sathorn Road, Sathon, Bangkok 10120",
-    districtId: 28, // Sathon (districtCode: 128)
+   
   },
   {
     user_id: 27,
@@ -140,7 +137,7 @@ export const companyProfileData = [
     address: "8 Rangnam Road, Phaya Thai, Bangkok 10400",
     taxnumber: "0105535040951",
     billaddress: "8 Rangnam Road, Phaya Thai, Bangkok 10400",
-    districtId: 14, // Phaya Thai (districtCode: 114)
+   
   },
   {
     user_id: 28,
@@ -151,7 +148,7 @@ export const companyProfileData = [
     address: "89 Vibhavadi Rangsit Road, Chatuchak, Bangkok 10900",
     taxnumber: "0107537001757",
     billaddress: "89 Vibhavadi Rangsit Road, Chatuchak, Bangkok 10900",
-    districtId: 30, // Chatuchak (districtCode: 130)
+  
   },
   {
     user_id: 29,
@@ -162,7 +159,7 @@ export const companyProfileData = [
     address: "1 Siam Cement Road, Bang Sue, Bangkok 10800",
     taxnumber: "0107537000955",
     billaddress: "1 Siam Cement Road, Bang Sue, Bangkok 10800",
-    districtId: 29, // Bang Sue (districtCode: 129)
+   
   },
   {
     user_id: 30,
@@ -173,7 +170,7 @@ export const companyProfileData = [
     address: "319 Chamchuri Square, Phaya Thai, Bangkok 10330",
     taxnumber: "0105549034548",
     billaddress: "319 Chamchuri Square, Phaya Thai, Bangkok 10330",
-    districtId: 14, // Phaya Thai (districtCode: 114)
+   
   },
   {
     user_id: 31,
@@ -184,7 +181,7 @@ export const companyProfileData = [
     address: "414 Phaholyothin Road, Chatuchak, Bangkok 10900",
     taxnumber: "0107535000265",
     billaddress: "414 Phaholyothin Road, Chatuchak, Bangkok 10900",
-    districtId: 30, // Chatuchak (districtCode: 130)
+   
   },
   {
     user_id: 32,
@@ -197,7 +194,7 @@ export const companyProfileData = [
     taxnumber: "0105558007455",
     billaddress:
       "55 Sathorn Square Tower, North Sathorn Road, Silom, Bang Rak, Bangkok 10500",
-    districtId: 4, // Bang Rak (districtCode: 104)
+
   },
   {
     user_id: 33,
@@ -209,7 +206,7 @@ export const companyProfileData = [
     taxnumber: "0105558161721",
     billaddress:
       "127 Gaysorn Tower, Ratchadamri Road, Pathum Wan, Bangkok 10330",
-    districtId: 7, // Pathum Wan (districtCode: 107)
+
   },
   {
     user_id: 34,
@@ -220,7 +217,7 @@ export const companyProfileData = [
     address: "333 Silom Road, Silom, Bang Rak, Bangkok 10500",
     taxnumber: "0107536000374",
     billaddress: "333 Silom Road, Silom, Bang Rak, Bangkok 10500",
-    districtId: 4, // Bang Rak (districtCode: 104)
+
   },
   {
     user_id: 35,
@@ -231,7 +228,7 @@ export const companyProfileData = [
     address: "33 Sukhumvit 3, Khlong Toei Nuea, Watthana, Bangkok 10110",
     taxnumber: "0107536000935",
     billaddress: "33 Sukhumvit 3, Khlong Toei Nuea, Watthana, Bangkok 10110",
-    districtId: 39, // Watthana (districtCode: 139)
+    
   },
   {
     user_id: 36,
@@ -242,7 +239,7 @@ export const companyProfileData = [
     address: "2 Wang Lang Road, Bangkok Noi, Bangkok 10700",
     taxnumber: "0994000158378",
     billaddress: "2 Wang Lang Road, Bangkok Noi, Bangkok 10700",
-    districtId: 20, // Bangkok Noi (districtCode: 120)
+   
   },
   {
     user_id: 37,
@@ -253,7 +250,7 @@ export const companyProfileData = [
     address: "50 Empire Tower, Sathorn Road, Yan Nawa, Bangkok 10120",
     taxnumber: "0105504000810",
     billaddress: "50 Empire Tower, Sathorn Road, Yan Nawa, Bangkok 10120",
-    districtId: 12, // Yan Nawa (districtCode: 112)
+   
   },
   {
     user_id: 38,
@@ -264,7 +261,7 @@ export const companyProfileData = [
     address: "11/1 AIA Sathorn Tower, Sathorn Road, Sathon, Bangkok 10120",
     taxnumber: "0105534106210",
     billaddress: "11/1 AIA Sathorn Tower, Sathorn Road, Sathon, Bangkok 10120",
-    districtId: 28, // Sathon (districtCode: 128)
+  
   },
   {
     user_id: 39,
@@ -277,7 +274,7 @@ export const companyProfileData = [
     taxnumber: "0105546095724",
     billaddress:
       "30th Floor, Abdulrahim Place, Rama IV Road, Silom, Bang Rak, Bangkok 10500",
-    districtId: 4, // Bang Rak (districtCode: 104)
+  
   },
   {
     user_id: 40,
@@ -288,7 +285,7 @@ export const companyProfileData = [
     address: "63 Wireless Road, Lumpini, Pathum Wan, Bangkok 10330",
     taxnumber: "0105546104530",
     billaddress: "63 Wireless Road, Lumpini, Pathum Wan, Bangkok 10330",
-    districtId: 7, // Pathum Wan (districtCode: 107)
+  
   },
   {
     user_id: 41,
@@ -301,7 +298,7 @@ export const companyProfileData = [
     taxnumber: "0105533114731",
     billaddress:
       "999/9 The Offices at CentralWorld, Rama I Road, Pathum Wan, Bangkok 10330",
-    districtId: 7, // Pathum Wan (districtCode: 107)
+
   },
   {
     user_id: 42,
@@ -314,7 +311,7 @@ export const companyProfileData = [
     taxnumber: "0105534007271",
     billaddress:
       "37th Floor, CRC Tower, All Seasons Place, Wireless Road, Pathum Wan, Bangkok 10330",
-    districtId: 7, // Pathum Wan (districtCode: 107)
+   
   },
   {
     user_id: 43,
@@ -325,7 +322,7 @@ export const companyProfileData = [
     address: "48 Nanglinchee Road, Sathorn, Bangkok 10120",
     taxnumber: "0115556014275",
     billaddress: "48 Nanglinchee Road, Sathorn, Bangkok 10120",
-    districtId: 28, // Sathon (districtCode: 128)
+   
   },
   {
     user_id: 44,
@@ -338,7 +335,7 @@ export const companyProfileData = [
     taxnumber: "0105560103828",
     billaddress:
       "93/1 GPF Witthayu Tower A, Wireless Road, Lumpini, Pathum Wan, Bangkok 10330",
-    districtId: 7, // Pathum Wan (districtCode: 107)
+    
   },
   {
     user_id: 45,
@@ -349,7 +346,7 @@ export const companyProfileData = [
     address: "139 Sethiwan Tower, Pan Road, Silom, Bang Rak, Bangkok 10500",
     taxnumber: "0105554081919",
     billaddress: "139 Sethiwan Tower, Pan Road, Silom, Bang Rak, Bangkok 10500",
-    districtId: 4, // Bang Rak (districtCode: 104)
+    
   },
   {
     user_id: 46,
@@ -362,7 +359,7 @@ export const companyProfileData = [
     taxnumber: "0107563000196",
     billaddress:
       "89 Chao Phaya Tower, Sukhumvit Soi 69, Phra Khanong, Bangkok 10260",
-    districtId: 9, // Phra Khanong (districtCode: 109)
+  
   },
   {
     user_id: 47,
@@ -375,7 +372,7 @@ export const companyProfileData = [
     taxnumber: "0105511003574",
     billaddress:
       "175 Sathorn City Tower, South Sathorn Road, Thung Maha Mek, Sathon, Bangkok 10120",
-    districtId: 28, // Sathon (districtCode: 128)
+  
   },
   {
     user_id: 48,
@@ -388,7 +385,7 @@ export const companyProfileData = [
     taxnumber: "0105516001471",
     billaddress:
       "23rd Floor, Q House Lumpini Building, South Sathorn Road, Sathon, Bangkok 10120",
-    districtId: 28, // Sathon (districtCode: 128)
+
   },
   {
     user_id: 49,
@@ -401,7 +398,7 @@ export const companyProfileData = [
     taxnumber: "0107536000412",
     billaddress:
       "14th Floor, Ploenchit Tower, Sukhumvit Road, Khlong Toei, Bangkok 10110",
-    districtId: 33, // Khlong Toei (districtCode: 133)
+   
   },
   {
     user_id: 50,
@@ -412,7 +409,7 @@ export const companyProfileData = [
     address: "147 Soi Rama 2, Samae Dam, Bang Khun Thian, Bangkok 10150",
     taxnumber: "0107562000378",
     billaddress: "147 Soi Rama 2, Samae Dam, Bang Khun Thian, Bangkok 10150",
-    districtId: 21, // Bang Khun Thian (districtCode: 121)
+    
   },
   {
     user_id: 51,
@@ -423,7 +420,7 @@ export const companyProfileData = [
     address: "321 Ratchadapisek Road, Din Daeng, Bangkok 10400",
     taxnumber: "0105537143215",
     billaddress: "321 Ratchadapisek Road, Din Daeng, Bangkok 10400",
-    districtId: 26, // Din Daeng (districtCode: 126)
+   
   },
   {
     user_id: 52,
@@ -434,7 +431,7 @@ export const companyProfileData = [
     address: "96/27 Moo 9, Bangna-Trad Road, Bang Na, Bangkok 10260",
     taxnumber: "0107535000079",
     billaddress: "96/27 Moo 9, Bangna-Trad Road, Bang Na, Bangkok 10260",
-    districtId: 47, // Bang Na (districtCode: 147)
+   
   },
   {
     user_id: 53,
@@ -445,7 +442,7 @@ export const companyProfileData = [
     address: "252/6 Siam Square, Pathum Wan, Bangkok 10330",
     taxnumber: "0105535108141",
     billaddress: "252/6 Siam Square, Pathum Wan, Bangkok 10330",
-    districtId: 7, // Pathum Wan (districtCode: 107)
+  
   },
   {
     user_id: 54,
@@ -456,7 +453,7 @@ export const companyProfileData = [
     address: "101 Silom Complex, Bang Rak, Bangkok 10500",
     taxnumber: "0105540101566",
     billaddress: "101 Silom Complex, Bang Rak, Bangkok 10500",
-    districtId: 4, // Bang Rak (districtCode: 104)
+    
   },
   {
     user_id: 55,
@@ -469,7 +466,7 @@ export const companyProfileData = [
     taxnumber: "0105536092641",
     billaddress:
       "209/1 KCC Building, Sukhumvit 21 (Asoke), Khlong Toei Nuea, Watthana, Bangkok 10110",
-    districtId: 39, // Watthana (districtCode: 139)
+  
   },
   {
     user_id: 56,
@@ -482,7 +479,7 @@ export const companyProfileData = [
     taxnumber: "0105533004251",
     billaddress:
       "11th Floor, Interchange 21 Building, Sukhumvit Road, Khlong Toei, Bangkok 10110",
-    districtId: 33, // Khlong Toei (districtCode: 133)
+  
   },
   {
     user_id: 57,
@@ -495,7 +492,7 @@ export const companyProfileData = [
     taxnumber: "0105536132457",
     billaddress:
       "15th Floor, Thanapoom Tower, New Petchburi Road, Phaya Thai, Bangkok 10400",
-    districtId: 14, // Phaya Thai (districtCode: 114)
+
   },
   {
     user_id: 58,
@@ -507,7 +504,7 @@ export const companyProfileData = [
     taxnumber: "0105546100764",
     billaddress:
       "388 Exchange Tower, Sukhumvit Road, Khlong Toei, Bangkok 10110",
-    districtId: 33, // Khlong Toei (districtCode: 133)
+   
   },
   {
     user_id: 59,
@@ -520,7 +517,7 @@ export const companyProfileData = [
     taxnumber: "0107545000276",
     billaddress:
       "16th Floor, Berli Jucker House, Soi Rubia, Sukhumvit 42, Phra Khanong, Bangkok 10110",
-    districtId: 9, // Phra Khanong (districtCode: 109)
+   
   },
   {
     user_id: 60,
@@ -531,7 +528,7 @@ export const companyProfileData = [
     address: "9 Ratchadapisek Road, Chatuchak, Bangkok 10900",
     taxnumber: "0107536000102",
     billaddress: "9 Ratchadapisek Road, Chatuchak, Bangkok 10900",
-    districtId: 30, // Chatuchak (districtCode: 130)
+  
   },
   {
     user_id: 61,
@@ -542,7 +539,7 @@ export const companyProfileData = [
     address: "1222 Rama III Road, Bang Phongphang, Yan Nawa, Bangkok 10120",
     taxnumber: "0107536001079",
     billaddress: "1222 Rama III Road, Bang Phongphang, Yan Nawa, Bangkok 10120",
-    districtId: 12, // Yan Nawa (districtCode: 112)
+ 
   },
   {
     user_id: 62,
@@ -553,7 +550,7 @@ export const companyProfileData = [
     address: "470 Phaya Thai Road, Ratchathewi, Bangkok 10400",
     taxnumber: "0994000164991",
     billaddress: "470 Phaya Thai Road, Ratchathewi, Bangkok 10400",
-    districtId: 37, // Ratchathewi (districtCode: 137)
+    
   },
   {
     user_id: 63,
@@ -564,7 +561,7 @@ export const companyProfileData = [
     address: "1871 Henry Dunant Road, Pathum Wan, Bangkok 10330",
     taxnumber: "0994000164304",
     billaddress: "1871 Henry Dunant Road, Pathum Wan, Bangkok 10330",
-    districtId: 7, // Pathum Wan (districtCode: 107)
+   
   },
   {
     user_id: 64,
@@ -575,7 +572,7 @@ export const companyProfileData = [
     address: "1033 Phahonyothin Road, Chatuchak, Bangkok 10900",
     taxnumber: "0994000159382",
     billaddress: "1033 Phahonyothin Road, Chatuchak, Bangkok 10900",
-    districtId: 30, // Chatuchak (districtCode: 130)
+  
   },
   {
     user_id: 65,
@@ -586,6 +583,6 @@ export const companyProfileData = [
     address: "173 Din So Road, Phra Nakhon, Bangkok 10200",
     taxnumber: "0994000159901",
     billaddress: "173 Din So Road, Phra Nakhon, Bangkok 10200",
-    districtId: 1, // Phra Nakhon (districtCode: 101)
+  
   },
 ];

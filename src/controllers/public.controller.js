@@ -63,6 +63,10 @@ export const getAllPostJobByCompany = async(req,res,next)=>{
     const jobs = await prisma.jobPost.findMany({
       where: {
         company_id: +company_id,
+        status: "ACTIVE"
+      },
+      orderBy:{
+        createAt: 'desc'
       }
     })
     res.json({
