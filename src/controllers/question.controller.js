@@ -117,7 +117,7 @@ export const getQuestionsByJobpost = async (req, res, next) => {
       question_id: q.id,
       question_text: q.question,
       type: q.type,
-      answer_options: q.answerOptions.map(opt => ({
+      answer_options: q.answerData.map(opt => ({
         answeroption_id: opt.id,
         answer_text: opt.text,
       }))
