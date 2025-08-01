@@ -20,6 +20,7 @@ import skillRouter from "./routes/skill.route.js";
 import languageRouter from "./routes/language.route.js";
 import publicRouter from "./routes/public.route.js";
 import favoriteRouter from "./routes/favorite.route.js";
+import questionRouter from "./routes/question.route.js";
 
 
 const app = express();
@@ -48,6 +49,8 @@ app.use("/api", skillRouter);
 app.use("/api", languageRouter);
 app.use("/api",publicRouter)
 app.use("/api", favoriteRouter);
+app.use("/api", questionRouter);
+
 
 
 
