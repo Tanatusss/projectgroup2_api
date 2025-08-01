@@ -12,13 +12,15 @@ export const createJobPost = async (req, res, next) => {
       address,
       salary,
       jobRequirement,
-      typejob
-      
+      typejob,
+      expireAt
+
     } = req.body
     if (!id) {
       createError(400, "Missing required fields")
     }
-
+    const expiredAt = new Date();
+    expiredAt.setDate(expiredAt.getDate() + 30);
     const jobPost = await createJob({
         title,
         jobDescription,
@@ -26,12 +28,14 @@ export const createJobPost = async (req, res, next) => {
         salary,
         jobRequirement,
         typejob,
-        company_id: +id 
+        company_id: +id,
+        expireAt
     })
 
     res.json({
       msg: "Post job success",
-      jobpost: jobPost
+      jobpost: jobPost,
+      expireAt: expiredAt
     })
 
 
