@@ -17,7 +17,6 @@ import educationRouter from "./routes/education.route.js";
 import resumeRouter from "./routes/resume.route.js";
 import certificateRouter from "./routes/certificate.route.js";
 import skillRouter from "./routes/skill.route.js";
-import districtsRouter from "./routes/district.route.js";
 import languageRouter from "./routes/language.route.js";
 import publicRouter from "./routes/public.route.js";
 import favoriteRouter from "./routes/favorite.route.js";
@@ -58,7 +57,6 @@ app.use("/api", jobRouter);
 app.use("/api", bookmarkRouter);
 app.use("/api", applicationRouter);
 app.use("/api", aiRouter);
-app.use("/api/districts", districtsRouter);
 
 // app.use(error);
 // app.use(notFound);

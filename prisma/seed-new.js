@@ -1,11 +1,11 @@
 import prisma from "../src/config/prisma.js";
 import { companyProfileData } from "./seeds/companies.js";
 import { jobData } from "./seeds/jobs.js";
-import { districts } from "./seeds/districts.js";
 import { adminData, companyData, userData } from "./seeds/usersAndAdmins.js";
 import { educationData } from "./seeds/education.js";
 import { profileData } from "./seeds/profiles.js";
 import { workExperienceData } from "./seeds/workExperience.js";
+import { questionAllData } from "./seeds/question.js";
 
 // import { languages } from "./seeds/languages.js"; // Skip for now - requires profile_id
 //npm run seed
@@ -13,14 +13,8 @@ async function seedDB() {
   try {
     console.log("Starting database seeding...");
 
-    // Seed districts first (foreign key reference)
-    console.log("Seeding districts...");
-    await prisma.district.createMany({
-      data: districts,
-      skipDuplicates: true,
-    });
 
-    //seed users
+    //seed userr\
     console.log("Seeding users...");
     await prisma.user.createMany({
       data: userData,
@@ -91,6 +85,28 @@ async function seedDB() {
     skipDuplicates: true,
   });
   console.log(`Seeded ${experienceResult.count} work experience records`);
+}
+
+
+   // Seed questions
+  console.log("Seeding questions and answers...");
+for (const question of questionAllData) {
+  const createdQuestion = await prisma.questionData.create({
+    data: {
+      typejob: question.typejob,
+      question: question.question,
+    },
+  });
+
+  // สร้าง answerData สำหรับคำถามนี้
+  if (question.answerData && question.answerData.create) {
+    await prisma.answerData.createMany({
+      data: question.answerData.create.map((ans) => ({
+        text: ans.text,
+        questionId: createdQuestion.id, // ต้องมี foreign key เชื่อมกับ questionData
+      })),
+    });
+  }
 }
 
 seedDB()
