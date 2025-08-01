@@ -54,6 +54,25 @@ export const getPostJobById = async (req, res, next) => {
   }
 }
 
+export const getAllPostJobByCompany = async(req,res,next)=>{
+  try{
+    const {company_id} = req.params;
+    if (!company_id) {
+      createError(400, "Missing required fields");
+    }
+    const jobs = await prisma.jobPost.findMany({
+      where: {
+        company_id: +company_id,
+      }
+    })
+    res.json({
+      msg: "Get all job posts by company success",
+      jobs
+    })
+  }catch(error){
+    next(error);
+  }
+}
 
 export const getAllCompany = async(req,res,next)=>{
   try{
