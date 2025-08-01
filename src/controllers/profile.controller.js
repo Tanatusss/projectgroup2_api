@@ -28,6 +28,35 @@ export const getProfileById = async (req, res, next) => {
   }
 };
 
+export const getAllProfile = async (req, res, next) => {
+  try {
+    const profiles = await prisma.profileUser.findMany({
+      include: {
+        workExperience: true,
+        education: true,
+        Skills: true,
+        Certificate: true,
+        Languages: true,
+        Resume: true,
+        jobApply: true,
+        district: true,
+        user: {
+          select: {
+            id: true,
+            email: true,
+            role: true
+          }
+        }
+      }
+    });
+
+    res.json(profiles);
+  } catch (err) {
+    next(err);
+  }
+};
+
+
 export const updateProfileById = async (req, res, next) => {
   const { id } = req.params;
   const {
