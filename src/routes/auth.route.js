@@ -12,7 +12,7 @@ authRouter.post("/auth/reset-password", resetPassword)
 
 authRouter.post("/auth/google/signin", () => { console.log("google-signin") })
 
-authRouter.get("auth/refresh-token", refreshAccessToken)
+authRouter.get("/auth/refresh-token", refreshAccessToken)
 
 
 
