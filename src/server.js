@@ -47,7 +47,7 @@ app.use("/api", resumeRouter);
 app.use("/api", certificateRouter);
 app.use("/api", skillRouter);
 app.use("/api", languageRouter);
-app.use("/api",publicRouter)
+app.use("/api", publicRouter)
 app.use("/api", favoriteRouter);
 app.use("/api", questionRouter);
 
@@ -61,8 +61,8 @@ app.use("/api", bookmarkRouter);
 app.use("/api", applicationRouter);
 app.use("/api", aiRouter);
 
-// app.use(error);
-// app.use(notFound);
+//app.use(error);
+//app.use(notFound);
 
 app.listen(PORT, () => {
 	console.log(`Server running at http://localhost:${PORT}`);
