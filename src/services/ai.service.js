@@ -3,7 +3,6 @@ import prisma from "../config/prisma.js"
 export const serviceKeywordsSearch = async (keywords) => {
 	const {
 		education,
-		expectedSalary,
 		preferJobField,
 		preferJobLocation,
 		preferJobTitle,
@@ -13,7 +12,6 @@ export const serviceKeywordsSearch = async (keywords) => {
 		where: {
 			OR: [
 				{ title: { contains: preferJobTitle } },
-				{ salary: { gte: expectedSalary } },
 				{ address: { contains: preferJobLocation } },
 				{ jobDescription: { contains: preferJobTitle } },
 				{ jobDescription: { contains: preferJobLocation } },

@@ -7,7 +7,7 @@ import { rateSimilarity } from "../ai_utils/cosineSimilarity.js"
 
 // TODO: Need to remove console.log later
 export const aiSearch = async (req, res, next) => {
-	const acceptable_similarity = 0.8500
+	const acceptable_similarity = 0.9500
 	try {
 		const { text } = req.body
 		if (!text) {
@@ -30,7 +30,7 @@ export const aiSearch = async (req, res, next) => {
 			keywords = aiResponse
 			const newKeywords = JSON.stringify(aiResponse)
 			const data = { text, keywords: newKeywords }
-			const result = await addToPromptDb(data)
+			await addToPromptDb(data)
 		}
 		console.log("keywords: ", keywords)
 		const response = await serviceKeywordsSearch(keywords)
