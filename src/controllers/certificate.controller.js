@@ -6,6 +6,7 @@ import prisma from "../config/prisma.js"
 
 
 export const uploadCertificate = async (req, res, next) => {
+
   const profileId = parseInt(req.params.id)
   const file = req.file
   const { name } = req.body
@@ -49,55 +50,57 @@ export const uploadCertificate = async (req, res, next) => {
   } catch (err) {
     next(err)
   }
+
+
 }
 
 export const getCertificatesByProfile = async (req, res, next) => {
-  try {
-    const profileId = parseInt(req.params.id)
-    const certificates = await prisma.certificate.findMany({
-      where: { profile_id: profileId },
-    })
-    res.json(certificates)
-  } catch (err) {
-    next(err)
-  }
+	try {
+		const profileId = parseInt(req.params.id)
+		const certificates = await prisma.certificate.findMany({
+			where: { profile_id: profileId },
+		})
+		res.json(certificates)
+	} catch (err) {
+		next(err)
+	}
 }
 
 export const updateCertificate = async (req, res, next) => {
-  try {
-    const certId = parseInt(req.params.id)
-    const { name } = req.body
+	try {
+		const certId = parseInt(req.params.id)
+		const { name } = req.body
 
-    const updated = await prisma.certificate.update({
-      where: { id: certId },
-      data: { name },
-    })
+		const updated = await prisma.certificate.update({
+			where: { id: certId },
+			data: { name },
+		})
 
-    res.json(updated)
-  } catch (err) {
-    next(err)
-  }
+		res.json(updated)
+	} catch (err) {
+		next(err)
+	}
 }
 
 export const deleteCertificate = async (req, res, next) => {
-  try {
-    const certId = parseInt(req.params.id)
+	try {
+		const certId = parseInt(req.params.id)
 
-    const found = await prisma.certificate.findUnique({
-      where: { id: certId },
-    })
+		const found = await prisma.certificate.findUnique({
+			where: { id: certId },
+		})
 
-    if (!found) return next(createError(404, "Certificate not found"))
+		if (!found) return next(createError(404, "Certificate not found"))
 
-    const filePath = found.url.split("/").pop()
-    await supabase.storage.from(process.env.SUPABASE_BUCKET_CERTIFICATES).remove([filePath])
+		const filePath = found.url.split("/").pop()
+		await supabase.storage.from(process.env.SUPABASE_BUCKET_CERTIFICATES).remove([filePath])
 
-    await prisma.certificate.delete({
-      where: { id: certId },
-    })
+		await prisma.certificate.delete({
+			where: { id: certId },
+		})
 
-    res.json({ message: 'Certificate deleted' })
-  } catch (err) {
-    next(err)
-  }
+		res.json({ message: 'Certificate deleted' })
+	} catch (err) {
+		next(err)
+	}
 }

@@ -13,7 +13,7 @@ export const registerUser = async (req, res, next) => {
 		const { email, password, role } = req.body;
 		const user = await findUser(email)
 		if (user) {
-			createError(400, 'Email already exist!!!')
+			return createError(400, 'Email already exist!!!')
 		}
 		const hashPassword = bcrypt.hashSync(password, 10)
 		const newUser = {
@@ -30,7 +30,6 @@ export const registerUser = async (req, res, next) => {
 				}
 			});
 		}
-
 		if (result.role === "COMPANY") {
 			await prisma.company.create({
 				data: {
@@ -38,11 +37,7 @@ export const registerUser = async (req, res, next) => {
 				}
 			});
 		}
-
-
-
-
-		res.json({ message: `Register success`, result })
+		res.status(200).json({ message: `Register success`, result })
 	} catch (error) {
 		next(error)
 	}
@@ -70,6 +65,7 @@ export const login = async (req, res, next) => {
 			maxAge: 60 * 1000
 		})
 		res.status(200).json({
+			user: { id: user.id, role: user.role, email: user.email },
 			accessToken: accessToken,
 		})
 	} catch (error) {
