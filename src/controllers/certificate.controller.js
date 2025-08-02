@@ -6,48 +6,52 @@ import prisma from "../config/prisma.js"
 
 
 export const uploadCertificate = async (req, res, next) => {
-	const profileId = parseInt(req.params.id)
-	const file = req.file
-	const { name } = req.body
-	console.log(file)
-	console.log(name)
 
-	// FIX: Bug profileId != userId
-	// if (req.user.id !== profileId) {
-	//	createError(403, "You are not allowed to upload to this profile")
-	// }
+  const profileId = parseInt(req.params.id)
+  const file = req.file
+  const { name } = req.body
 
-	if (!file) return res.status(400).json({ error: 'No file uploaded' })
-	if (!name) return res.status(400).json({ error: 'Name is required' })
+  const profile = await prisma.profileUser.findUnique({
+      where: { id: profileId },
+    })
 
-	try {
-		const fileName = `certificate-${uuidv4()}.pdf`
+  if (profile.user_id !== req.user.id) {
+    createError(403, "You are not allowed to upload to this profile")
+  }
 
-		const { error: uploadError } = await supabase.storage
-			.from(process.env.SUPABASE_BUCKET_CERTIFICATES)
-			.upload(fileName, file.buffer, {
-				contentType: file.mimetype,
-				upsert: false,
-			})
+  if (!file) return res.status(400).json({ error: 'No file uploaded' })
+  if (!name) return res.status(400).json({ error: 'Name is required' })
 
-		if (uploadError) throw uploadError
+  try {
+    const fileName = `certificate-${uuidv4()}.pdf`
 
-		const { data: publicUrlData } = supabase.storage
-			.from(process.env.SUPABASE_BUCKET_CERTIFICATES)
-			.getPublicUrl(fileName)
+    const { error: uploadError } = await supabase.storage
+      .from(process.env.SUPABASE_BUCKET_CERTIFICATES) 
+      .upload(fileName, file.buffer, {
+        contentType: file.mimetype,
+        upsert: false,
+      })
 
-		const newCertificate = await prisma.certificate.create({
-			data: {
-				name: name,
-				url: publicUrlData.publicUrl,
-				profile_id: profileId,
-			},
-		})
+    if (uploadError) throw uploadError
 
-		res.status(201).json(newCertificate)
-	} catch (err) {
-		next(err)
-	}
+    const { data: publicUrlData } = supabase.storage
+      .from(process.env.SUPABASE_BUCKET_CERTIFICATES)
+      .getPublicUrl(fileName)
+
+    const newCertificate = await prisma.certificate.create({
+      data: {
+        name: name,
+        url: publicUrlData.publicUrl,
+        profile_id: profileId,
+      },
+    })
+
+    res.status(201).json(newCertificate)
+  } catch (err) {
+    next(err)
+  }
+
+
 }
 
 export const getCertificatesByProfile = async (req, res, next) => {

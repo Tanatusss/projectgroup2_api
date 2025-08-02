@@ -54,8 +54,8 @@ export const getExpectedAnswers = async (req, res, next) => {
     const expectedAnswers = await prisma.companyAnswer.findMany({
       where: { jobpostId },
       include: {
-        question: true,
-        answerOption: true,
+        questionData: true,
+        answerData: true,
       },
       orderBy: {
         questionId: 'asc',
@@ -68,14 +68,14 @@ export const getExpectedAnswers = async (req, res, next) => {
       if (!grouped[qid]) {
         grouped[qid] = {
           question_id: qid,
-          question_text: ea.question.question,
+          question_text: ea.questionData.question,
           answers: [],
         }
       }
 
       grouped[qid].answers.push({
-        answeroption_id: ea.answerOption.id,
-        answer_text: ea.answerOption.text,
+        answeroption_id: ea.answerData.id,
+        answer_text: ea.answerData.text,
       })
     }
 

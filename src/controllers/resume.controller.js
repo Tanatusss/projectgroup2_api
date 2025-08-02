@@ -21,7 +21,11 @@ export const uploadResume = async (req, res, next) => {
   const file = req.file
   const { name } = req.body
 
-  if(req.user.id !== profileId) {
+  const profile = await prisma.profileUser.findUnique({
+    where: {id: profileId }
+  })
+
+  if(profile.user_id !== req.user.id) {
     createError(403, "You are not allowed to upload to this profile")
   }
 

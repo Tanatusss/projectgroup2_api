@@ -6,7 +6,6 @@ import userRouter from "./routes/user.route.js";
 import companyRouter from "./routes/company.route.js";
 import jobRouter from "./routes/jobpost.route.js";
 import bookmarkRouter from "./routes/bookmark.route.js";
-import applicationRouter from "./routes/appication.route.js";
 import profileRouter from "./routes/profile.route.js";
 import experienceRouter from "./routes/experience.route.js";
 import aiRouter from "./routes/ai.route.js";
@@ -21,6 +20,7 @@ import languageRouter from "./routes/language.route.js";
 import publicRouter from "./routes/public.route.js";
 import favoriteRouter from "./routes/favorite.route.js";
 import questionRouter from "./routes/question.route.js";
+import applyJobRouter from "./routes/applyjob.route.js";
 
 
 const app = express();
@@ -50,6 +50,7 @@ app.use("/api", languageRouter);
 app.use("/api", publicRouter)
 app.use("/api", favoriteRouter);
 app.use("/api", questionRouter);
+app.use("/api", applyJobRouter);
 
 
 
@@ -58,7 +59,6 @@ app.use("/api", questionRouter);
 app.use("/api", companyRouter);
 app.use("/api", jobRouter);
 app.use("/api", bookmarkRouter);
-app.use("/api", applicationRouter);
 app.use("/api", aiRouter);
 
 //app.use(error);
