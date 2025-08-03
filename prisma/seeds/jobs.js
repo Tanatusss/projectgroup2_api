@@ -15,7 +15,7 @@ export const jobData = [
     salary: 80000,
     jobRequirement:
       "- 5+ years experience in full stack development\n- Strong proficiency in JavaScript, including DOM manipulation and the JavaScript object model\n- Experience with React.js and Node.js\n- Familiarity with RESTful APIs and modern authorization mechanisms\n- Experience with MongoDB or similar NoSQL databases\n- Understanding of server-side CSS preprocessing platforms\n- Good understanding of asynchronous request handling, partial page updates, and AJAX\n- Proficient understanding of code versioning tools, such as Git\n- Strong problem-solving skills and attention to detail",
-    typejob: "Software Developer",
+    typejob: "Fullstack Developer",
   
   },
   {
@@ -27,7 +27,7 @@ export const jobData = [
     salary: 70000,
     jobRequirement:
       "- 3+ years of experience in a DevOps or similar role\n- Strong knowledge of AWS or Azure cloud services\n- Experience with containerization technologies (Docker, Kubernetes)\n- Proficiency with infrastructure as code tools (Terraform, CloudFormation)\n- Experience with CI/CD tools (Jenkins, GitLab CI, GitHub Actions)\n- Knowledge of scripting languages (Python, Bash)\n- Understanding of networking concepts and security practices\n- Problem-solving mindset and ability to work in a fast-paced environment",
-
+    typejob: "Fullstack Developer",
   },
 
   // Digital Marketing Pro Co., Ltd. (company_id: 2)
@@ -40,7 +40,7 @@ export const jobData = [
     salary: 55000,
     jobRequirement:
       "- 2+ years of professional experience in frontend development\n- Strong proficiency in HTML5, CSS3, and JavaScript\n- Experience with React.js or similar modern JavaScript frameworks\n- Familiarity with responsive design and mobile-first approach\n- Knowledge of browser testing and debugging\n- Understanding of CSS pre-processors (SASS, LESS)\n- Experience with version control systems (Git)\n- Eye for design and attention to detail\n- Good communication skills in English",
-    typejob: "Software Developer",
+    typejob: "Fullstack Developer",
   
   },
   // {
@@ -444,7 +444,7 @@ export const jobData = [
     salary: 25000,
     jobRequirement:
       "- 1+ years of experience in IT support or similar role\n- Knowledge of computer hardware and networking fundamentals\n- Experience with Windows operating systems and basic software troubleshooting\n- Familiarity with POS systems is a plus\n- Strong customer service orientation\n- Good communication and interpersonal skills\n- Ability to work flexible hours, including evenings and weekends\n- Basic understanding of IT security practices\n- Problem-solving skills and attention to detail\n- Technical education or certification is preferred",
-    typejob: "IT Support",
+    typejob: "Accounting Officer",
   
   },
 
@@ -460,7 +460,8 @@ export const jobData = [
     salary: 60000,
     jobRequirement:
       "- 3+ years of experience in telecommunications engineering\n- Strong knowledge of mobile networks (4G/5G technologies)\n- Experience with network equipment (routers, switches, base stations)\n- Understanding of telecommunications protocols and standards\n- Familiarity with network monitoring and management tools\n- Problem-solving skills and analytical thinking\n- Ability to work under pressure and meet deadlines\n- Good documentation and communication abilities\n- Relevant telecommunications certifications are a plus\n- Bachelor's degree in Telecommunications, Electrical Engineering, or related field",
-    typejob: "Telecommunications",
+        typejob: "Accounting Officer",
+
 
   },
 
@@ -474,7 +475,8 @@ export const jobData = [
     salary: 75000,
     jobRequirement:
       "- 3+ years of experience in software development\n- Knowledge of financial services technology and digital banking\n- Experience with payment systems and financial APIs\n- Proficiency in modern programming languages (Java, Python, JavaScript)\n- Understanding of security requirements in financial applications\n- Familiarity with agile development methodologies\n- Strong problem-solving skills and innovation mindset\n- Good communication and collaboration abilities\n- Experience with mobile application development is a plus\n- Bachelor's degree in Computer Science, IT, or related field",
-    typejob: "Fintech",
+        typejob: "Accounting Officer",
+
  
   },
 ];
