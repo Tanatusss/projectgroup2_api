@@ -180,10 +180,11 @@ model FavoriteJob {
 model JobApply {
         id           Int            @id @default(autoincrement())
         profile_id   Int
+        jobpost_id Int
         profile      ProfileUser    @relation(fields: [profile_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
         applyAt      DateTime       @default(now())
-        jobpost      JobPost[]
-        userAnswer   UserAnswer[]
+        jobpost    JobPost     @relation(fields: [jobpost_id], references: [id])
+        
         UserQuestion UserQuestion[]
 }
 
@@ -216,8 +217,7 @@ model JobPost {
         favoriteJob        FavoriteJob[]
         payment            Payment[]
         companyAnswer      CompanyAnswer[]
-        JobApply           JobApply?            @relation(fields: [jobApply_Id], references: [id])
-        jobApply_Id        Int?
+        jobApplies JobApply[]
         JobPostAllQuestion JobPostAllQuestion[]
 
         @@fulltext([title])
@@ -315,8 +315,7 @@ model UserAnswer {
 
         userAnswer     UserQuestion  @relation(fields: [UserQuestion_Id], references: [id])
         answerOption   AnswerData    @relation(fields: [answerOptionId], references: [id])
-        JobApply       JobApply?     @relation(fields: [jobApplyId], references: [id])
-        jobApplyId     Int?
+        
         QuestionData   QuestionData? @relation(fields: [questionDataId], references: [id])
         questionDataId Int?
 

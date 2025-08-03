@@ -6,10 +6,11 @@ const applyJobRouter = express.Router()
 
 
 
-applyJobRouter.get("/jobapplies", () => (console.log("Get All Applications")))
-applyJobRouter.get("/jobapplies/:id", () => (console.log("Get Application By Id")))
+applyJobRouter.get("/jobapplies", authCheck, applyJobController.getAllJobAppliesByProfileId)
+applyJobRouter.get("/jobapplies/jobpost/:jobpostId", authCheck, applyJobController.getJobAppliesByJobPostId)
+applyJobRouter.get("/jobapplies/:id", authCheck, applyJobController.getJobApplyById)
 applyJobRouter.post("/jobapplies", authCheck, applyJobController.createJobApply)
-applyJobRouter.delete("/jobapplies/:id", () => (console.log("Cancel Application By Id")))
+applyJobRouter.delete("/jobapplies/:id", authCheck, applyJobController.deleteJobApplyById)
 
 
 
