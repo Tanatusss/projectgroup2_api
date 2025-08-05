@@ -14,7 +14,7 @@ export const getProfileById = async (req, res, next) => {
 				Certificate: true,
 				Languages: true,
 				Resume: true,
-				jobApply: true
+				jobApply: true,
 			}
 		});
 
@@ -70,7 +70,8 @@ export const updateProfileById = async (req, res, next) => {
 		expectsalary,
 		startdate,
 		jobpreferences,
-		typejob
+		typejob,
+		preferredlocation,
 	} = req.body;
 
 	try {
@@ -88,7 +89,8 @@ export const updateProfileById = async (req, res, next) => {
 				expectsalary,
 				startdate,
 				jobpreferences,
-				typejob
+				typejob,
+				preferredlocation
 			}
 		});
 
