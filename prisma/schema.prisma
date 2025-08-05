@@ -48,6 +48,12 @@ model Company {
         taxnumber   String?
         billaddress String?
         description String?
+        package     Package? @default(LITE) //ENUM
+        websitecompany String?
+        industrytype String?
+        companysize String?
+        primarylocation String?
+        companyvision String?
         jobPost     JobPost[]
         User        User?     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
         user_id     Int?
@@ -87,6 +93,7 @@ model ProfileUser {
         expectsalary   Int?
         startdate      StartDate? //ENUM
         jobpreferences JobPreferences? //ENUM
+        preferredlocation String?
         user_id        Int
         user           User            @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
@@ -213,12 +220,10 @@ model JobPost {
         createAt           DateTime             @default(now())
         expireAt           DateTime?
         status             PostStatus           @default(ACTIVE)
-        package            Package              @default(LITE)
         favoriteJob        FavoriteJob[]
         payment            Payment[]
         companyAnswer      CompanyAnswer[]
         jobApplies JobApply[]
-        JobPostAllQuestion JobPostAllQuestion[]
 
         @@fulltext([title])
         @@fulltext([address])
@@ -271,7 +276,6 @@ model QuestionData {
         companyAnswers     CompanyAnswer[]      @relation("QuestionToCompanyAnswer")
         UserAnswer         UserAnswer[] // คำตอบที่ user ตอบ
         UserQuestion       UserQuestion[]
-        JobPostAllQuestion JobPostAllQuestion[]
 }
 
 model AnswerData {
@@ -322,10 +326,3 @@ model UserAnswer {
         @@unique([UserQuestion_Id, answerOptionId]) // ป้องกันเลือกซ้ำ
 }
 
-model JobPostAllQuestion {
-        id         Int          @id @default(autoincrement())
-        jobpostId  Int
-        questionId Int
-        jobpost    JobPost      @relation(fields: [jobpostId], references: [id])
-        question   QuestionData @relation(fields: [questionId], references: [id])
-}
