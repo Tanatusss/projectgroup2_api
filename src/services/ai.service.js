@@ -14,9 +14,13 @@ export const serviceKeywordsSearch = async (keywords) => {
 				{ title: { contains: preferJobTitle } },
 				{ jobDescription: { contains: preferJobTitle } },
 				{ jobDescription: { contains: preferJobField } },
+				{ jobDescription: { contains: preferJobLocation } },
 				{ jobDescription: { contains: skills } },
+				{ jobRequirement: { contains: preferJobField } },
 				{ jobRequirement: { contains: education } },
 				{ jobRequirement: { contains: skills } },
+				{ typejob: { contains: preferJobField } },
+				{ typejob: { contains: preferJobTitle } },
 			],
 			AND: [
 				{ status: "ACTIVE" },
