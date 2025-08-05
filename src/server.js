@@ -32,7 +32,7 @@ app.use(
 		origin: true,
 		methods: ["GET", "POST", "PATCH", "DELETE"],
 		allowedHeaders: ["Content-Type", "Authorization"],
-		credentials: true
+		credentials: true,
 	})
 );
 app.use(helmet());

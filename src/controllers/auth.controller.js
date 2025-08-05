@@ -62,7 +62,7 @@ export const login = async (req, res, next) => {
 			httpOnly: true,
 			sameSite: "strict",
 			secure: true,
-			maxAge: 60 * 1000
+			maxAge: 60 * 24 * 60 * 60 * 1000
 		})
 		res.status(200).json({
 			user: { id: user.id, role: user.role, email: user.email },
@@ -202,7 +202,14 @@ export const signInGoogle = async (req, res, next) => {
 			id: checkedUser.id,
 			role: checkedUser.role
 		}
+		const refreshToken = signRefreshToken(payload)
 		const accessToken = signToken(payload)
+		res.cookie("refreshToken", refreshToken, {
+			httpOnly: true,
+			sameSite: "strict",
+			secure: true,
+			maxAge: 60 * 24 * 60 * 60 * 1000
+		})
 		res.status(200).json({
 			accessToken,
 			user: { id: checkedUser.id, role: checkedUser.role, email: checkedUser.email },
@@ -236,7 +243,7 @@ export const refreshAccessToken = async (req, res, next) => {
 			httpOnly: true,
 			sameSite: "strict",
 			secure: true,
-			maxAge: 60 * 1000
+			maxAge: 60 * 24 * 60 * 60 * 1000
 		})
 		res.status(200).json({ accessToken: newAccessToken })
 	} catch (err) {
