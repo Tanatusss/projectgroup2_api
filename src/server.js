@@ -61,8 +61,8 @@ app.use("/api", jobRouter);
 app.use("/api", bookmarkRouter);
 app.use("/api", aiRouter);
 
-//app.use(error);
-//app.use(notFound);
+app.use(error);
+app.use(notFound);
 
 app.listen(PORT, () => {
 	console.log(`Server running at http://localhost:${PORT}`);

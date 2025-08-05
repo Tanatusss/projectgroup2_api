@@ -2,7 +2,7 @@ import { createError } from "../utils/createError.js";
 import bcrypt from 'bcryptjs';
 import prisma from '../config/prisma.js'
 import { createUser, findUser } from "../services/user.service.js";
-import { signRefreshToken, signToken } from "../utils/jwtUtil.js";
+import { decodeToken, signRefreshToken, signToken } from "../utils/jwtUtil.js";
 import crypto from "crypto";
 import nodemailer from "nodemailer";
 import { getOldRefreshToken, newRefreshToken } from "../services/auth.service.js";
@@ -160,13 +160,53 @@ export const resetPassword = async (req, res, next) => {
 
 export const signInGoogle = async (req, res, next) => {
 	try {
-		const user = await findUser()
+		const { token, role } = req.body
+		const user = decodeToken(token)
+		const account = await findUser(user.email)
+		const password = user.sub + user.email
+		if (!account) {
+			const hashedPassword = bcrypt.hashSync(password, 10)
+			const newUser = {
+				email: user.email,
+				password: hashedPassword,
+				role
+			}
+			const result = await createUser(newUser)
+			if (result.role == "USER") {
+				await prisma.profileUser.create({
+					data: {
+						user_id: result.id,
+						firstname: user.given_name,
+						lastname: user.family_name
+					}
+				})
+
+			}
+			if (result.role == "COMPANY") {
+				await prisma.company.create({
+					data: {
+						user_id: result.id,
+						hrfirstname: user.given_name,
+						hrlastname: user.family_name
+					}
+				})
+			}
+		}
+		const checkedUser = await findUser(user.email)
+		const passwordIsValid = await bcrypt.compare(password, checkedUser.password)
+		if (!passwordIsValid) {
+			return createError(400, 'Invalid Login')
+		}
+
 		const payload = {
-			id: user.id,
-			role: user.role
+			id: checkedUser.id,
+			role: checkedUser.role
 		}
 		const accessToken = signToken(payload)
-		res.status(200).json({ accessToken })
+		res.status(200).json({
+			accessToken,
+			user: { id: checkedUser.id, role: checkedUser.role, email: checkedUser.email },
+		})
 	} catch (err) {
 		next(err)
 	}

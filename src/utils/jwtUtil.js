@@ -9,3 +9,8 @@ export function signRefreshToken(payload) {
 	const result = jwt.sign(payload, process.env.REFRESH_SECRET, { algorithm: "HS256", expiresIn: "60d" })
 	return result
 }
+
+export function decodeToken(token) {
+	const result = jwt.decode(token)
+	return result
+}
