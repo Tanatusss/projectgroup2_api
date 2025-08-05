@@ -141,7 +141,7 @@ export const getJobById = async (req, res, next) => {
       include: {
         company: {
           select: {
-            name: true,
+            companyname: true,
             logoimage: true,
           },
         },
