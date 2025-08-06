@@ -21,10 +21,6 @@ export async function rateSimilarity(base, textArr) {
 	}
 	const maxRating = Math.max(...similarityList.map(text => text.similarity))
 	const index = similarityList.findIndex((rating) => rating.similarity == maxRating)
-	console.log(maxRating)
-	console.log(index)
-	console.log(similarityList)
-	console.log(similarityList[index])
 	if (index < 0) {
 		return { similarity: 0 }
 	}

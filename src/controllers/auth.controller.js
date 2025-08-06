@@ -62,7 +62,7 @@ export const login = async (req, res, next) => {
 			httpOnly: true,
 			sameSite: "strict",
 			secure: true,
-			maxAge: 60 * 1000
+			maxAge: 60 * 24 * 60 * 60 * 1000
 		})
 		res.status(200).json({
 			user: { id: user.id, role: user.role, email: user.email },
@@ -202,7 +202,14 @@ export const signInGoogle = async (req, res, next) => {
 			id: checkedUser.id,
 			role: checkedUser.role
 		}
+		const refreshToken = signRefreshToken(payload)
 		const accessToken = signToken(payload)
+		res.cookie("refreshToken", refreshToken, {
+			httpOnly: true,
+			sameSite: "strict",
+			secure: true,
+			maxAge: 60 * 24 * 60 * 60 * 1000
+		})
 		res.status(200).json({
 			accessToken,
 			user: { id: checkedUser.id, role: checkedUser.role, email: checkedUser.email },
@@ -217,16 +224,17 @@ export const refreshAccessToken = async (req, res, next) => {
 	try {
 		const oldToken = req.cookies.refreshToken
 		console.log(oldToken)
+		const user = decodeToken(oldToken)
 		if (!oldToken) {
 			return createError(401, "no refresh token")
 		}
-		const id = req?.user.id
-		const role = req?.user.role
+		const id = user.id
+		const role = user.role
 		const oldRefreshToken = await getOldRefreshToken(oldToken)
 		if (!oldRefreshToken) {
 			return createError(401, "no refresh token")
 		}
-		if (new Date() < oldRefreshToken.expiredAt) {
+		if (new Date() > oldRefreshToken.expiredAt) {
 			return createError(401, "refresh token expired")
 		}
 		const newRefreshToken = signRefreshToken({ id, role })
@@ -236,7 +244,7 @@ export const refreshAccessToken = async (req, res, next) => {
 			httpOnly: true,
 			sameSite: "strict",
 			secure: true,
-			maxAge: 60 * 1000
+			maxAge: 60 * 24 * 60 * 60 * 1000
 		})
 		res.status(200).json({ accessToken: newAccessToken })
 	} catch (err) {
