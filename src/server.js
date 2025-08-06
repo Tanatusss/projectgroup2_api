@@ -21,12 +21,27 @@ import publicRouter from "./routes/public.route.js";
 import favoriteRouter from "./routes/favorite.route.js";
 import questionRouter from "./routes/question.route.js";
 import applyJobRouter from "./routes/applyjob.route.js";
+import subscriptionRouter from "./routes/subscription.route.js";
+import webhookRouter from "./routes/webhook.route.js";
 
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
+
+app.use((req, res, next) => {
+	if (req.originalUrl === "/webhook") {
+		express.raw({ type: "application/json" })(req, res, next);
+	} else {
+		express.json()(req, res, next);
+	}
+});
+
+
+
+
+// app.use(express.json());
+
 app.use(
 	cors({
 		origin: true,
@@ -38,6 +53,7 @@ app.use(
 app.use(helmet());
 app.use(cookieParser())
 
+app.use("/webhook", webhookRouter);
 app.use("/api", authRouter);
 app.use("/api", userRouter);
 app.use("/api", profileRouter);
@@ -51,6 +67,9 @@ app.use("/api", publicRouter)
 app.use("/api", favoriteRouter);
 app.use("/api", questionRouter);
 app.use("/api", applyJobRouter);
+app.use("/api", subscriptionRouter);
+
+
 
 
 

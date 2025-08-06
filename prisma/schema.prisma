@@ -37,6 +37,7 @@ model ResetToken {
 
 model Company {
         id          Int       @id @default(autoincrement())
+  stripeCustomerId String?       @map("stripe_customer_id")
         hrfirstname String?
         hrlastname  String?
         companyname String?
@@ -55,8 +56,38 @@ model Company {
         primarylocation String?
         companyvision String?
         jobPost     JobPost[]
+        subscription Subscription[]
         User        User?     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
         user_id     Int?
+}
+
+model Subscription {
+  id                 String             @id
+  stripeSessionId    String?            @unique @map("stripe_session_id")
+  currentPeriodStart DateTime?          @map("current_period_start")
+  currentPeriodEnd   DateTime?          @map("current_period_end")
+  subScriptionStatus SubScriptionStatus @default(ACTIVE) @map("subscription_status")
+  companyId             Int                @unique
+  company               Company               @relation(references: [id], fields: [companyId], onDelete: Cascade)
+  isAvailable        Boolean            @default(true) @map("is_available")
+  createdAt          DateTime           @default(now()) @map("created_at")
+  priceId            String?            @map("price_id")
+
+  @@map("subscriptions")
+}
+
+enum SubScriptionStatus {
+  ACTIVE
+  UNPAID
+  CANCELED
+}
+
+model PackagePlan {
+  id             Int     @id @default(autoincrement())
+  name           Package
+  description String
+  price Int
+  stripePriceId  String  @unique
 }
 
 enum Gender {
