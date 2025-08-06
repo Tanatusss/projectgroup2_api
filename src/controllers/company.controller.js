@@ -4,13 +4,12 @@ import { updateCompany } from "../services/company.service.js";
 import { createError } from "../utils/createError.js";
 
 
-export const getCompanyById = async (req, res, next) => {
+export const getCompanyByUserId = async (req, res, next) => {
 	try {
-		const { company_id } = req.params
-		console.log("deez", company_id)
+		const { user_id } = req.params
 		const company = await prisma.company.findFirst({
 			where: {
-				user_id: +company_id
+				user_id: +user_id
 			}
 		})
 		if (!company) {

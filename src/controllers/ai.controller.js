@@ -5,7 +5,6 @@ import { createError } from "../utils/createError.js"
 import { addToPromptDb, getPromptDb, serviceKeywordsSearch } from "../services/ai.service.js"
 import { rateSimilarity } from "../ai_utils/cosineSimilarity.js"
 
-// TODO: Need to remove console.log later
 export const aiSearch = async (req, res, next) => {
 	const acceptable_similarity = 0.9500
 	try {
@@ -19,14 +18,12 @@ export const aiSearch = async (req, res, next) => {
 		if (maxSimilarity.similarity > acceptable_similarity) {
 			keywords = await JSON.parse(maxSimilarity.keywords)
 			console.log("use keyword from maxSimilarity")
-			console.log(keywords)
 		}
 		else {
 			console.log("use ai")
 			const structured_llm = llm.withStructuredOutput(userSchema)
 			const prompt = await promptTemplate.invoke({ text: text, });
 			let aiResponse = await structured_llm.invoke(prompt);
-			console.log(aiResponse)
 			keywords = aiResponse
 			const newKeywords = JSON.stringify(aiResponse)
 			const data = { text, keywords: newKeywords }

@@ -63,8 +63,9 @@ export const getAllPostJobByCompany = async (req, res, next) => {
 		const jobs = await prisma.jobPost.findMany({
 			where: {
 				company_id: +company_id,
-				status: "ACTIVE"
+				AND: { status: "ACTIVE" }
 			},
+
 			orderBy: {
 				createAt: 'desc'
 			}
@@ -99,7 +100,7 @@ export const getCompanyById = async (req, res, next) => {
 		}
 		const company = await prisma.company.findFirst({
 			where: {
-				user_id: +id,
+				id: +id,
 			}
 		});
 		if (!company) {

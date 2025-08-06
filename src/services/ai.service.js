@@ -12,20 +12,23 @@ export const serviceKeywordsSearch = async (keywords) => {
 		where: {
 			OR: [
 				{ title: { contains: preferJobTitle } },
-				{ address: { contains: preferJobLocation } },
 				{ jobDescription: { contains: preferJobTitle } },
-				{ jobDescription: { contains: preferJobLocation } },
 				{ jobDescription: { contains: preferJobField } },
+				{ jobDescription: { contains: preferJobLocation } },
 				{ jobDescription: { contains: skills } },
+				{ jobRequirement: { contains: preferJobField } },
 				{ jobRequirement: { contains: education } },
 				{ jobRequirement: { contains: skills } },
+				{ typejob: { contains: preferJobField } },
+				{ typejob: { contains: preferJobTitle } },
 			],
-			AND: { status: "ACTIVE" }
+			AND: [
+				{ status: "ACTIVE" },
+			]
 		},
 		include: {
 			company: {
 				select: { companyname: true, logoimage: true },
-
 			}
 		},
 	})
