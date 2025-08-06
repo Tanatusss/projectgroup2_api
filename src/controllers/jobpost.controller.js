@@ -3,159 +3,160 @@ import { createJob, updateJob } from "../services/jobpost.service.js";
 import { createError } from "../utils/createError.js";
 
 export const createJobPost = async (req, res, next) => {
-  try {
-    const  {id} = req.company
-    console.log("kuay",req.company)
-    const {
-      title,
-      jobDescription,
-      address,
-      salary,
-      jobRequirement,
-      typejob,
-      expireAt
+	try {
+		const { id } = req.company
+		console.log("kuay", req.company)
+		const {
+			title,
+			jobDescription,
+			address,
+			salary,
+			jobRequirement,
+			typejob,
+			expireAt
 
-    } = req.body
-    if (!id) {
-      createError(400, "Missing required fields")
-    }
-    const expiredAt = new Date();
-    expiredAt.setDate(expiredAt.getDate() + 30);
-    const jobPost = await createJob({
-        title,
-        jobDescription,
-        address,
-        salary,
-        jobRequirement,
-        typejob,
-        company_id: +id,
-        expireAt
-    })
+		} = req.body
+		if (!id) {
+			createError(400, "Missing required fields")
+		}
+		const expiredAt = new Date();
+		expiredAt.setDate(expiredAt.getDate() + 30);
+		const jobPost = await createJob({
+			title,
+			jobDescription,
+			address,
+			salary,
+			jobRequirement,
+			typejob,
+			company_id: +id,
+			expireAt
+		})
 
-    res.json({
-      msg: "Post job success",
-      jobpost: jobPost,
-      expireAt: expiredAt
-    })
+		res.json({
+			msg: "Post job success",
+			jobpost: jobPost,
+			expireAt: expiredAt
+		})
 
 
-  } catch (error) {
-    next(error);
-  }
+	} catch (error) {
+		next(error);
+	}
 }
 
-export const updateJobPost =async (req,res,next)=> {
-  try{
-     const {job_id} = req.params;
-      const {
-      title,
-      jobDescription,
-      address,
-      salary,
-      jobRequirement,
-    } = req.body
-    console.log("req.body = ", req.body);
-    console.log("job_id",job_id)
-    if (!req.body) {
-      return res.status(400).json({ msg: "Missing request body" });
-    }
-    if (!job_id) {
-      createError(400, "Missing required fields")
-    }
+export const updateJobPost = async (req, res, next) => {
+	try {
+		const { job_id } = req.params;
+		const {
+			title,
+			jobDescription,
+			address,
+			salary,
+			jobRequirement,
+		} = req.body
+		console.log("req.body = ", req.body);
+		console.log("job_id", job_id)
+		if (!req.body) {
+			return res.status(400).json({ msg: "Missing request body" });
+		}
+		if (!job_id) {
+			createError(400, "Missing required fields")
+		}
 
-    const jobPost = await updateJob(job_id,{
-        title,
-        jobDescription,
-        address,
-        salary,
-        jobRequirement,
-    })
+		const jobPost = await updateJob(job_id, {
+			title,
+			jobDescription,
+			address,
+			salary,
+			jobRequirement,
+		})
 
-    res.json({
-      msg: "Update job success",
-      jobpost: jobPost
-    })
+		res.json({
+			msg: "Update job success",
+			jobpost: jobPost
+		})
 
-  }catch(error){
-    next(error);
-  }
+	} catch (error) {
+		next(error);
+	}
 }
 
 
-export const deleteJobPost = async(req,res,next)=>{
-  try{
-    const {job_id} = req.params;
-    const {id} = req.company;
-    const job = await prisma.jobPost.findFirst({
-      where: {id: Number(job_id), id}
-    })
-    if(!job) {
-      return res.json({message: 'Not found !!!'})
-    }
-    const deletejob = await prisma.jobPost.delete({
-      where:{
-          id:Number(job_id)
-      }
-    })
-    res.json({
-      msg: "Deleete success",
-      deletejob
-    })
-  }catch(error){
-    next(error)
-  }
+export const deleteJobPost = async (req, res, next) => {
+	try {
+		const { job_id } = req.params;
+		const { id } = req.company;
+		const job = await prisma.jobPost.findFirst({
+			where: { id: Number(job_id), id }
+		})
+		if (!job) {
+			return res.json({ message: 'Not found !!!' })
+		}
+		const deletejob = await prisma.jobPost.delete({
+			where: {
+				id: Number(job_id)
+			}
+		})
+		res.json({
+			msg: "Deleete success",
+			deletejob
+		})
+	} catch (error) {
+		next(error)
+	}
 }
 
-export const getAllPostJob = async(req,res,next)=>{
-  try{
-    const jobs = await prisma.jobPost.findMany({
-      include: {
-        company: {
-          select: {
-            name: true,
-            logoimage: true,
-          },
-        },
-      },
-    });
-    res.json({
-      msg: "Get all job success",
-      jobs
-    })
-  }catch(error){
-    next(error);
-  }
+export const getAllPostJob = async (req, res, next) => {
+	try {
+		const jobs = await prisma.jobPost.findMany({
+			include: {
+				company: {
+					select: {
+						name: true,
+						logoimage: true,
+					},
+				},
+			},
+		});
+		res.json({
+			msg: "Get all job success",
+			jobs
+		})
+	} catch (error) {
+		next(error);
+	}
 }
 
 
 export const getJobById = async (req, res, next) => {
-  try {
-    const { job_id } = req.params;
-    if (!job_id) {
-      return createError(400, "Missing required fields");
-    }
-    const job = await prisma.jobPost.findUnique({
-      where: {
-        id: +job_id,
-      },
-      include: {
-        company: {
-          select: {
-            companyname: true,
-            logoimage: true,
-          },
-        },
-      },
-    });
-    if (!job) {
-      return createError(404, "Job not found");
-    }
-    res.json({
-      msg: "Get job by id success",
-      job,
-    });
-  } catch (error) {
-    next(error);
-  }
+	try {
+		const { job_id } = req.params;
+		if (!job_id) {
+			return createError(400, "Missing required fields");
+		}
+		const job = await prisma.jobPost.findUnique({
+			where: {
+				id: +job_id,
+			},
+			include: {
+				company: {
+					select: {
+						companyname: true,
+						logoimage: true,
+					},
+				},
+			},
+		});
+		if (!job) {
+			return createError(404, "Job not found");
+		}
+		console.log(job)
+		res.json({
+			msg: "Get job by id success",
+			job,
+		});
+	} catch (error) {
+		next(error);
+	}
 }
 
