@@ -23,7 +23,7 @@ export const checkoutSession = async (req, res) => {
       mode: "subscription",
       customer: stripeCustomerId,
       line_items: [{ price: priceId, quantity: 1 }],
-      success_url: `${process.env.FRONTEND_URL}/subscription/success?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${process.env.FRONTEND_URL}?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.FRONTEND_URL}/subscription/cancel`,
     });
 
@@ -38,13 +38,15 @@ export const stripeWebhook = async (req, res) => {
   const signature = req.headers["stripe-signature"]
   let event;
   // console.log("Signature:", signature);
-console.log("Raw Body:", req.body.toString());
+// console.log("Raw Body:", req.body.toString());
 
   // console.log("Headers ทั้งหมด:", req.headers);
   try {
     event = stripe.webhooks.constructEvent(req.body, signature, process.env.STRIPE_WEBHOOK_SECRET);
     const session = event.data.object
-    console.log("session", session)
+//     console.log("Stripe Event Type:", event.type);
+// console.log("Event Data Object:", event.data.object);
+    // console.log("session", session)
     // console.log("ควย",event) 
 
   } catch (err) {
@@ -54,18 +56,31 @@ console.log("Raw Body:", req.body.toString());
 
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
-    const companyId = session.customer_metadata.companyId;
+    const customer = await stripe.customers.retrieve(session.customer);
+    const companyId = customer.metadata.companyId;
+    console.log("companyId", companyId)
+    if (!companyId) {
+  return res.status(400).json({ message: "companyId not found in customer metadata" });
+}
     const subscriptionId = session.subscription;
-    const priceId = session.display_items[0]?.price.id || session.line_items[0]?.price.id;
+    const lineItems = await stripe.checkout.sessions.listLineItems(session.id, { limit: 1 });
+    const priceId = lineItems.data[0]?.price.id;
 
     const stripeSub = await stripe.subscriptions.retrieve(subscriptionId);
+    const subscriptionItem = stripeSub.items.data[0];
+  const currentPeriodStarts = subscriptionItem.current_period_start;
+  const currentPeriodEnds = subscriptionItem.current_period_end;
+    // console.log("stripeSub",stripeSub)
+    // console.log("stripeSub", stripeSub.items.data[0]);
+    // const currentPeriod = stripeSub.items.data[0]
+    // const {current_period_start, current_period_end} = currentPeriod
 
     await prisma.subscription.upsert({
       where: { companyId: parseInt(companyId) },
       update: {
         stripeSessionId: session.id,
-        currentPeriodStart: new Date(stripeSub.current_period_start * 1000),
-        currentPeriodEnd: new Date(stripeSub.current_period_end * 1000),
+        currentPeriodStart: new Date(currentPeriodStarts * 1000),
+        currentPeriodEnd: new Date(currentPeriodEnds * 1000),
         subScriptionStatus: stripeSub.status.toUpperCase(),
         priceId,
         isAvailable: true,
@@ -73,8 +88,8 @@ console.log("Raw Body:", req.body.toString());
       create: {
         id: subscriptionId,
         stripeSessionId: session.id,
-        currentPeriodStart: new Date(stripeSub.current_period_start * 1000),
-        currentPeriodEnd: new Date(stripeSub.current_period_end * 1000),
+        currentPeriodStart: new Date(currentPeriodStarts * 1000),
+        currentPeriodEnd: new Date(currentPeriodEnds * 1000),
         subScriptionStatus: stripeSub.status.toUpperCase(),
         priceId,
         isAvailable: true,

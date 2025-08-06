@@ -85,6 +85,8 @@ enum SubScriptionStatus {
 model PackagePlan {
   id             Int     @id @default(autoincrement())
   name           Package
+  description String
+  price Int
   stripePriceId  String  @unique
 }
 
