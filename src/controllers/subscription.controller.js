@@ -23,8 +23,8 @@ export const checkoutSession = async (req, res) => {
       mode: "subscription",
       customer: stripeCustomerId,
       line_items: [{ price: priceId, quantity: 1 }],
-      success_url: `${process.env.FRONTEND_URL}?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.FRONTEND_URL}/subscription/cancel`,
+      success_url: `${process.env.FRONTEND_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.FRONTEND_URL}/cancel`,
     });
 
     res.json({ url: session.url });
@@ -138,7 +138,11 @@ export const getSubscriptionStatus = async (req, res) => {
 export const getPackagePlans = async (req, res) => {
   try {
     const plans = await prisma.packagePlan.findMany();
-    res.json(plans);
+    const order = ["LITE", "BASIC", "PREMIUM"];
+    const sortedPlans = plans.sort(
+      (a, b) => order.indexOf(a.name) - order.indexOf(b.name)
+    );
+    res.json(sortedPlans);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal Server Error" });
