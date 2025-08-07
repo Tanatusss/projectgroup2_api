@@ -23,8 +23,8 @@ export const checkoutSession = async (req, res) => {
       mode: "subscription",
       customer: stripeCustomerId,
       line_items: [{ price: priceId, quantity: 1 }],
-      success_url: `${process.env.FRONTEND_URL}?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.FRONTEND_URL}/subscription/cancel`,
+      success_url: `${process.env.FRONTEND_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.FRONTEND_URL}/cancel`,
     });
 
     res.json({ url: session.url });

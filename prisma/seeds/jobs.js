@@ -192,5 +192,95 @@ export const jobData = [
     jobRequirement:
       "- Experience with Java, .NET, or Python\n- Familiarity with treasury systems and FX trading\n- Understanding of financial regulations and compliance\n- Good teamwork and communication\n- Knowledge of SWIFT and MT messages is a plus",
     typejob: "Accounting Officer"
-  }
+  },
+  {
+    company_id: 3,
+    title: "Frontend Developer",
+    jobDescription:
+      "Digital Marketing Pro is seeking a talented Frontend Developer to create exceptional user experiences for our clients' web projects. You will work closely with our design and marketing teams to implement responsive, visually appealing interfaces that drive user engagement and conversion.\n\nResponsibilities:\n- Develop new user-facing features using React.js\n- Build reusable components and frontend libraries for future use\n- Translate designs and wireframes into high-quality code\n- Optimize components for maximum performance across devices and browsers\n- Collaborate with backend developers to integrate frontend with APIs",
+    address: "45/6 Silom Complex, Bang Rak, Bangkok 10500",
+    salary: 55000,
+    jobRequirement:
+      "- 2+ years of professional experience in frontend development\n- Strong proficiency in HTML5, CSS3, and JavaScript\n- Experience with React.js or similar modern JavaScript frameworks\n- Familiarity with responsive design and mobile-first approach\n- Knowledge of browser testing and debugging\n- Understanding of CSS pre-processors (SASS, LESS)\n- Experience with version control systems (Git)\n- Eye for design and attention to detail\n- Good communication skills in English",
+    typejob: "Fullstack Developer",
+  },
+  {
+    company_id: 3,
+    title: "Backend Developer",
+    jobDescription:
+      "We are looking for a backend developer to build scalable and efficient APIs using Node.js and Express. You will manage data exchange between the server and users, ensuring responsiveness and performance.",
+    address: "123 Rama IX Road, Huai Khwang, Bangkok 10310",
+    salary: 60000,
+    jobRequirement:
+      "- Strong proficiency in Node.js\n- Experience with RESTful APIs\n- Familiarity with databases (MySQL, MongoDB)\n- Understanding of authentication and authorization\n- Familiar with containerization (Docker)",
+    typejob: "Fullstack Developer",
+  },
+  {
+    company_id: 3,
+    title: "Fullstack Developer (React + Node)",
+    jobDescription:
+      "Join our innovation team to develop a modern web platform using React.js and Node.js. You will work on both frontend and backend development with DevOps support.",
+    address: "88 Sukhumvit Soi 20, Khlong Toei, Bangkok 10110",
+    salary: 70000,
+    jobRequirement:
+      "- 3+ years of fullstack development\n- Experience in both frontend (React) and backend (Node/Express)\n- Good understanding of CI/CD\n- Familiarity with cloud platforms like AWS",
+    typejob: "Fullstack Developer",
+  },
+  {
+    company_id: 3,
+    title: "Junior Fullstack Developer",
+    jobDescription:
+      "Support the development team in building and maintaining web applications. Great opportunity to grow technical skills and be mentored by senior developers.",
+    address: "16 Ladprao Road, Chatuchak, Bangkok 10900",
+    salary: 40000,
+    jobRequirement:
+      "- 1+ years of programming experience\n- Basic knowledge in React or Vue\n- Some backend experience with Node or PHP\n- Eager to learn and improve",
+    typejob: "Fullstack Developer",
+  },
+
+  // ==== Accounting Officer ====
+  {
+    company_id: 3,
+    title: "Junior Accounting Officer",
+    jobDescription:
+      "We are seeking a Junior Accounting Officer to assist with financial record keeping and reporting. You will work closely with the finance team to ensure accuracy and compliance.",
+    address: "99/1 Vibhavadi Rangsit Road, Chatuchak, Bangkok 10900",
+    salary: 30000,
+    jobRequirement:
+      "- Bachelor's degree in Accounting\n- Basic knowledge of accounting principles\n- Proficient in MS Excel\n- Attention to detail",
+    typejob: "Accounting Officer",
+  },
+  {
+    company_id: 3,
+    title: "Senior Accounting Officer",
+    jobDescription:
+      "Responsible for preparing and analyzing financial reports, ensuring tax compliance, and managing monthly closing activities.",
+    address: "2 Ratchadaphisek Road, Din Daeng, Bangkok 10400",
+    salary: 50000,
+    jobRequirement:
+      "- 5+ years experience in accounting\n- Strong knowledge of Thai taxation\n- Familiarity with accounting software\n- CPA license is a plus",
+    typejob: "Accounting Officer",
+  },
+  {
+    company_id: 3,
+    title: "Accounting Officer (AR/AP)",
+    jobDescription:
+      "Handle account receivable and payable operations, ensure timely payments and billing accuracy, and reconcile vendor accounts.",
+    address: "40 Rama IV Road, Pathum Wan, Bangkok 10330",
+    salary: 40000,
+    jobRequirement:
+      "- Experience in AR/AP at least 2 years\n- Ability to reconcile accounts\n- Good Excel skills\n- Knowledge of SAP is a plus",
+    typejob: "Accounting Officer",
+  },
+  {
+    company_id: 3,
+    title: "Accounting Assistant",
+    jobDescription:
+      "Support daily accounting tasks including data entry, invoice verification, and document filing.",
+    address: "55 Phetchaburi Road, Ratchathewi, Bangkok 10400",
+    salary: 28000,
+    jobRequirement:
+      "- Diploma or Bachelor's degree in accounting\n- Detail-oriented\n- Fresh graduates are welcome",
+    typejob: "Accounting Officer",
+  },
 ];
