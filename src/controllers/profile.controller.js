@@ -3,6 +3,7 @@ import { createError } from "../utils/createError.js";
 
 export const getProfileById = async (req, res, next) => {
 	const { id } = req.params;
+	console.log("id", id)
 
 	try {
 		const profile = await prisma.profileUser.findFirst({
