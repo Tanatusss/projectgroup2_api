@@ -11,6 +11,7 @@ export const uploadCertificate = async (req, res, next) => {
 	const file = req.file
 	const { name } = req.body
 
+
 	const profile = await prisma.profileUser.findUnique({
 		where: { id: profileId },
 	})

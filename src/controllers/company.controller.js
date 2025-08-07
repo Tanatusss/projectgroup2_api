@@ -31,13 +31,31 @@ export const updatecompany = async (req, res, next) => {
 		let image_bg_url = null;
 		let logoimage_url = null;
 		if (req.files) {
-			if (req.files.image_bg) {
-				image_bg_url = await uploadToCloudinary(req.files.image_bg[0]);
-			}
-			if (req.files.logoimage) {
-				logoimage_url = await uploadToCloudinary(req.files.logoimage[0]);
-			}
-		}
+      // Upload background image
+      if (req.files.image_bg && req.files.image_bg[0]) {
+        console.log("Uploading background image...");
+        try {
+          image_bg_url = await uploadToCloudinary(req.files.image_bg[0]);
+          console.log("Background image uploaded:", image_bg_url);
+        } catch (uploadError) {
+          console.error("Error uploading background image:", uploadError);
+          return res.status(500).json({ msg: "Failed to upload background image" });
+        }
+      }
+      
+      // Upload logo image
+      if (req.files.logoimage && req.files.logoimage[0]) {
+        console.log("Uploading logo image...");
+        try {
+          logoimage_url = await uploadToCloudinary(req.files.logoimage[0]);
+          console.log("Logo image uploaded:", logoimage_url);
+        } catch (uploadError) {
+          console.error("Error uploading logo image:", uploadError);
+          return res.status(500).json({ msg: "Failed to upload logo image" });
+        }
+      }
+    }
+
 
 		const newCompany = await updateCompany(company_id, {
 			hrfirstname,

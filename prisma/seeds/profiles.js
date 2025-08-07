@@ -131,7 +131,6 @@ export const profileData = [
     description:
       "Data Analyst with 4 years of experience. Proficient in SQL, Python, R, and Power BI. Knowledge of Machine Learning and Statistical Analysis. Able to present complex data in an understandable format.",
     phone: "0834567890",
-    districtId: 39, // Watthana (was 139)
     gender: "FEMALE",
     expectsalary: 60000,
     startdate: "FOURWEEK",
@@ -148,7 +147,6 @@ export const profileData = [
     description:
       "Executive Assistant with 8 years of experience working with senior executives. Excellent communication and management skills. Fluent in English, efficient in document management, coordination, and meeting planning.",
     phone: "0845678901",
-    districtId: 6, // Bang Kapi (was 106)
     gender: "MALE",
     expectsalary: 45000,
     startdate: "TWOWEEK",
@@ -156,69 +154,6 @@ export const profileData = [
     typejob: "Fullstack Developer",
     preferredlocation: ""
   },
-  // {
-  //   //user11@mail.com
-  //   user_id: 11,
-  //   firstname: "Olivia",
-  //   lastname: "Johnson",
-  //   address: "75 Charoen Krung Road, Samphanthawong, Bangkok 10100",
-  //   description:
-  //     "Recent Business Administration graduate interested in marketing and sales. Worked on projects with leading companies during internships. Skilled in Microsoft Office and Adobe Photoshop.",
-  //   phone: "0856789012",
-  //   districtId: 13, // Samphanthawong (was 113)
-  //   gender: "FEMALE",
-  //   expectsalary: 18000,
-  //   startdate: "NOW",
-  //   jobpreferences: "PARTTIME",
-  // },
-  // {
-  //   //user12@mail.com
-  //   user_id: 12,
-  //   firstname: "Thomas",
-  //   lastname: "Richards",
-  //   address:
-  //     "333/9 Krisdanakorn Village, Ram Intra, Tha Raeng, Bang Khen, Bangkok 10220",
-  //   description:
-  //     "Senior Accountant with 10 years of experience. Specialized in tax planning, auditing, and financial reporting. Holds CPA license and is proficient in various accounting software applications.",
-  //   phone: "0867890123",
-  //   districtId: 5, // Bang Khen (was 105)
-  //   gender: "MALE",
-  //   expectsalary: 85000,
-  //   startdate: "EIGHTWEEK",
-  //   jobpreferences: "CONTRACT",
-  // },
-  // {
-  //   //user13@mail.com
-  //   user_id: 13,
-  //   firstname: "Jessica",
-  //   lastname: "Matthews",
-  //   address:
-  //     "45/2 Lumpini Condominium, Rama 4 Road, Thung Maha Mek, Sathon, Bangkok 10120",
-  //   description:
-  //     "IT Project Manager with 7 years of experience. Expert in managing information technology projects. PMP certified with experience leading large software development teams. Knowledgeable in Agile, Scrum, and Kanban methodologies.",
-  //   phone: "0878901234",
-  //   districtId: 28, // Sathon (was 128)
-  //   gender: "FEMALE",
-  //   expectsalary: 95000,
-  //   startdate: "FOURWEEK",
-  //   jobpreferences: "FULLTIME",
-  // },
-  // {
-  //   //user14@mail.com
-  //   user_id: 14,
-  //   firstname: "Daniel",
-  //   lastname: "Cooper",
-  //   address:
-  //     "127 Soi Ekkamai 10, Sukhumvit 63, Khlong Tan Nuea, Watthana, Bangkok 10110",
-  //   description:
-  //     "Thai-Fusion Chef with 6 years of experience working in Michelin-starred restaurants in Japan and Singapore. Expert in menu development and kitchen management. Fluent in English and Japanese.",
-  //   phone: "0889012345",
-  //   districtId: 39, // Watthana (was 139)
-  //   gender: "MALE",
-  //   expectsalary: 70000,
-  //   startdate: "EIGHTWEEK",
-  //   jobpreferences: "CONTRACT",
-  // },
   {
     //user15@mail.com
     user_id: 15,

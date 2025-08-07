@@ -1,85 +1,6 @@
 import bcrypt from "bcryptjs";
 
 const hashedPassword = bcrypt.hashSync("123456", 10);
-
-export const userData = [
-  {
-    email: "user1@mail.com",
-    password: hashedPassword,
-    role: "USER",
-  },
-  {
-    email: "user2@mail.com",
-    password: hashedPassword,
-    role: "USER",
-  },
-  {
-    email: "user3@mail.com",
-    password: hashedPassword,
-    role: "USER",
-  },
-  {
-    email: "user4@mail.com",
-    password: hashedPassword,
-    role: "USER",
-  },
-  {
-    email: "user5@mail.com",
-    password: hashedPassword,
-    role: "USER",
-  },
-  {
-    email: "user6@mail.com",
-    password: hashedPassword,
-    role: "USER",
-  },
-  {
-    email: "user7@mail.com",
-    password: hashedPassword,
-    role: "USER",
-  },
-  {
-    email: "user8@mail.com",
-    password: hashedPassword,
-    role: "USER",
-  },
-  {
-    email: "user9@mail.com",
-    password: hashedPassword,
-    role: "USER",
-  },
-  {
-    email: "user10@mail.com",
-    password: hashedPassword,
-    role: "USER",
-  },
-  {
-    email: "user11@mail.com",
-    password: hashedPassword,
-    role: "USER",
-  },
-  {
-    email: "user12@mail.com",
-    password: hashedPassword,
-    role: "USER",
-  },
-  {
-    email: "user13@mail.com",
-    password: hashedPassword,
-    role: "USER",
-  },
-  {
-    email: "user14@mail.com",
-    password: hashedPassword,
-    role: "USER",
-  },
-  {
-    email: "user15@mail.com",
-    password: hashedPassword,
-    role: "USER",
-  },
-];
-
 export const companyData = [
   {
     email: "company1@mail.com",
@@ -332,6 +253,85 @@ export const companyData = [
     role: "COMPANY",
   },
 ];
+
+export const userData = [
+  {
+    email: "user1@mail.com",
+    password: hashedPassword,
+    role: "USER",
+  },
+  {
+    email: "user2@mail.com",
+    password: hashedPassword,
+    role: "USER",
+  },
+  {
+    email: "user3@mail.com",
+    password: hashedPassword,
+    role: "USER",
+  },
+  {
+    email: "user4@mail.com",
+    password: hashedPassword,
+    role: "USER",
+  },
+  {
+    email: "user5@mail.com",
+    password: hashedPassword,
+    role: "USER",
+  },
+  {
+    email: "user6@mail.com",
+    password: hashedPassword,
+    role: "USER",
+  },
+  {
+    email: "user7@mail.com",
+    password: hashedPassword,
+    role: "USER",
+  },
+  {
+    email: "user8@mail.com",
+    password: hashedPassword,
+    role: "USER",
+  },
+  {
+    email: "user9@mail.com",
+    password: hashedPassword,
+    role: "USER",
+  },
+  {
+    email: "user10@mail.com",
+    password: hashedPassword,
+    role: "USER",
+  },
+  {
+    email: "user11@mail.com",
+    password: hashedPassword,
+    role: "USER",
+  },
+  {
+    email: "user12@mail.com",
+    password: hashedPassword,
+    role: "USER",
+  },
+  {
+    email: "user13@mail.com",
+    password: hashedPassword,
+    role: "USER",
+  },
+  {
+    email: "user14@mail.com",
+    password: hashedPassword,
+    role: "USER",
+  },
+  {
+    email: "user15@mail.com",
+    password: hashedPassword,
+    role: "USER",
+  },
+];
+
 
 export const adminData = [
   {
