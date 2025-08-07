@@ -6,6 +6,7 @@ import { educationData } from "./seeds/education.js";
 import { profileData } from "./seeds/profiles.js";
 import { workExperienceData } from "./seeds/workExperience.js";
 import { questionAllData } from "./seeds/question.js";
+import { packageplan } from "./seeds/packageplane.js";
 
 // import { languages } from "./seeds/languages.js"; // Skip for now - requires profile_id
 //npm run seed
@@ -128,6 +129,13 @@ for (const company of companyProfileData) {
     });
     console.log(`Seeded ${experienceResult.count} work experience records`);
 
+     //  Seed packageplane
+    console.log("Seeding packagePlan...");
+    await prisma.packagePlan.createMany({
+      data: packageplan,
+      skipDuplicates: true,
+    });
+    console.log(`Seeded ${packageplan.length} packagePlan records`);
     // 9. Seed questions
     console.log("Seeding questions and answers...");
     for (const question of questionAllData) {
