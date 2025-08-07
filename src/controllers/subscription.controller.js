@@ -138,7 +138,11 @@ export const getSubscriptionStatus = async (req, res) => {
 export const getPackagePlans = async (req, res) => {
   try {
     const plans = await prisma.packagePlan.findMany();
-    res.json(plans);
+    const order = ["LITE", "BASIC", "PREMIUM"];
+    const sortedPlans = plans.sort(
+      (a, b) => order.indexOf(a.name) - order.indexOf(b.name)
+    );
+    res.json(sortedPlans);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal Server Error" });
