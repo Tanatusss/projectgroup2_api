@@ -31,7 +31,7 @@ export const jobData = [
     typejob: "Fullstack Developer"
   },
   {
-    company_id: 1,
+    company_id: 3,
     title: "DevOps Engineer",
     jobDescription:
       "TechFlow Solutions is looking for a DevOps Engineer to help us build and maintain our cloud infrastructure. In this role, you will work with development and IT operations teams to deploy and support applications in cloud environments. You will be responsible for implementing automation, improving workflows, and ensuring system reliability and performance.\n\nResponsibilities:\n- Design, implement and manage CI/CD pipelines\n- Maintain and improve cloud infrastructure on AWS/Azure\n- Implement automation to improve development workflow\n- Monitor system performance and troubleshoot issues\n- Implement security best practices and ensure compliance",

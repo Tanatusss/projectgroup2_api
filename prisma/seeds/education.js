@@ -151,54 +151,54 @@ export const educationData = [
   },
 
   // Profile 12 - Melissa Wong (Content Marketing Manager)
-  {
-    profile_id: 12,
-    qualification: "Bachelor of Arts in English Literature",
-    institute: "Thammasat University",
-    graduationYear: 2017,
-    otherCourses: "Content Marketing Strategy Certificate",
-  },
+  // {
+  //   profile_id: 12,
+  //   qualification: "Bachelor of Arts in English Literature",
+  //   institute: "Thammasat University",
+  //   graduationYear: 2017,
+  //   otherCourses: "Content Marketing Strategy Certificate",
+  // },
 
-  // Profile 13 - David Nakamura (Business Analyst)
-  {
-    profile_id: 13,
-    qualification:
-      "Bachelor of Business Administration in Management Information Systems",
-    institute: "ABAC (Assumption University)",
-    graduationYear: 2018,
-    otherCourses: "Certified Business Analysis Professional (CBAP)",
-  },
-  {
-    profile_id: 13,
-    qualification: "Master of Science in Business Analytics",
-    institute: "Chulalongkorn Business School",
-    graduationYear: 2021,
-    otherCourses: "Advanced SQL and Data Modeling",
-  },
+  // // Profile 13 - David Nakamura (Business Analyst)
+  // {
+  //   profile_id: 13,
+  //   qualification:
+  //     "Bachelor of Business Administration in Management Information Systems",
+  //   institute: "ABAC (Assumption University)",
+  //   graduationYear: 2018,
+  //   otherCourses: "Certified Business Analysis Professional (CBAP)",
+  // },
+  // {
+  //   profile_id: 13,
+  //   qualification: "Master of Science in Business Analytics",
+  //   institute: "Chulalongkorn Business School",
+  //   graduationYear: 2021,
+  //   otherCourses: "Advanced SQL and Data Modeling",
+  // },
 
-  // Profile 14 - Naomi Tanaka (Graphic Designer)
-  {
-    profile_id: 14,
-    qualification: "Bachelor of Fine Arts in Graphic Design",
-    institute: "Silpakorn University",
-    graduationYear: 2020,
-    otherCourses: "Adobe Creative Suite Certification",
-  },
+  // // Profile 14 - Naomi Tanaka (Graphic Designer)
+  // {
+  //   profile_id: 14,
+  //   qualification: "Bachelor of Fine Arts in Graphic Design",
+  //   institute: "Silpakorn University",
+  //   graduationYear: 2020,
+  //   otherCourses: "Adobe Creative Suite Certification",
+  // },
 
-  // Profile 15 - Jason Park (Human Resources Specialist)
-  {
-    profile_id: 15,
-    qualification: "Bachelor of Arts in Human Resource Management",
-    institute: "Kasetsart University",
-    graduationYear: 2016,
-    otherCourses: "Professional in Human Resources (PHR) Certification",
-  },
-  {
-    profile_id: 15,
-    qualification:
-      "Master of Business Administration in Organizational Development",
-    institute: "Sasin Graduate Institute of Business Administration",
-    graduationYear: 2019,
-    otherCourses: "Talent Acquisition and Management",
-  },
+  // // Profile 15 - Jason Park (Human Resources Specialist)
+  // {
+  //   profile_id: 15,
+  //   qualification: "Bachelor of Arts in Human Resource Management",
+  //   institute: "Kasetsart University",
+  //   graduationYear: 2016,
+  //   otherCourses: "Professional in Human Resources (PHR) Certification",
+  // },
+  // {
+  //   profile_id: 15,
+  //   qualification:
+  //     "Master of Business Administration in Organizational Development",
+  //   institute: "Sasin Graduate Institute of Business Administration",
+  //   graduationYear: 2019,
+  //   otherCourses: "Talent Acquisition and Management",
+  // },
 ];
